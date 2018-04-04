@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!--配置servlet-->
+    <servlet>
+        <servlet-name>initServlet</servlet-name>
+        <servlet-class>com.servle.InitServer</servlet-class>
+        <!--启动顺序-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--配置url规则并指定servlet处理-->
+    <servlet-mapping>
+        <servlet-name>initServlet</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+</web-app>
