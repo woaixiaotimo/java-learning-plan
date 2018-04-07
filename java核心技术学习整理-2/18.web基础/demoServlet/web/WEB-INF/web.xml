@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+
+
+
+
     <!--配置servlet-->
     <servlet>
         <servlet-name>initServlet</servlet-name>
@@ -11,6 +15,7 @@
         <!--启动顺序-->
         <load-on-startup>1</load-on-startup>
     </servlet>
+
     <!--配置url规则并指定servlet处理-->
     <servlet-mapping>
         <servlet-name>initServlet</servlet-name>
