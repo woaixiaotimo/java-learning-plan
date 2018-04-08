@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <!--登录；后缀 拦截-->
     <filter>
         <filter-name>SessionFilter</filter-name>
         <filter-class>com.servle.Filter.SessionFilter</filter-class>
@@ -29,12 +30,57 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <context-param>
-        <param-name>servlet</param-name>
-        <param-value>/WEB-INF/test.xml</param-value>
-    </context-param>
+    <!--防盗链-->
+    <filter>
+        <filter-name>AntiTheftChainFilter</filter-name>
+        <filter-class>com.servle.Filter.AntiTheftChainFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AntiTheftChainFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-    <!--配置servlet-->
+    <!--字符编码拦截器设置-->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.servle.Filter.CharacterEncodingFilter</filter-class>
+        <!--使用何种编码-->
+        <init-param>
+            <param-name>CharacterEncoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <!--是否启动该功能-->
+        <init-param>
+            <param-name>enabled</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--日志记录-->
+    <filter>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>com.servle.Filter.LogFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--异常捕捉-->
+    <filter>
+        <filter-name>ExceptionFilter</filter-name>
+        <filter-class>com.servle.Filter.ExceptionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ExceptionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--配置主servlet-->
     <servlet>
         <servlet-name>initServlet</servlet-name>
         <servlet-class>com.servle.InitServer</servlet-class>

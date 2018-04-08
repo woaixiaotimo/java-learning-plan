@@ -14,6 +14,7 @@ public class SessionFilter implements Filter {
 
     public void destroy() {
         this.config = null;
+        System.out.println("登录结束");
     }
 
     public static boolean isContains(String container, String[] regx) {
@@ -65,6 +66,7 @@ public class SessionFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
         config = filterConfig;
+        System.out.println("登录过滤");
     }
 
 }
