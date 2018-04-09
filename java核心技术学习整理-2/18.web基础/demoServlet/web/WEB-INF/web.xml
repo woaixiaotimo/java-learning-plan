@@ -80,6 +80,20 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--GZIP压缩-->
+    <filter>
+        <filter-name>GZIPFilter</filter-name>
+        <filter-class>com.servle.Filter.gzipFilter.GZIPFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>GZIPFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>com.servle.listener.ListenerTest</listener-class>
+    </listener>
+
     <!--配置主servlet-->
     <servlet>
         <servlet-name>initServlet</servlet-name>

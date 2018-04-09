@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Service
@@ -47,9 +48,11 @@ public class Controller {
     @ControllerUrl("/login")
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-
+        HttpSession session = request.getSession();
+        session.setAttribute("A", "A");
         ServletOutputStream stream = response.getOutputStream();
         stream.write("login success".getBytes("UTF-8"));
         stream.flush();
+        session.removeAttribute("A");
     }
 }

@@ -1,10 +1,13 @@
 package com.servle;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSessionAttributeListener;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
@@ -13,6 +16,7 @@ public class InitServer extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         System.out.println("--------------程序启动-------------");
+//
     }
 
     @Override
