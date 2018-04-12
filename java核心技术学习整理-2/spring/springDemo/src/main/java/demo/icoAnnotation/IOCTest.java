@@ -14,6 +14,9 @@ public class IOCTest {
         Bean bean = (Bean) context.getBean("bean");
         System.out.println("bean = " + bean);
         bean.method();
+        bean.getBean2().method();
 
+        bean.getBean3().method();
+        System.out.println(bean.getA());
     }
 }
