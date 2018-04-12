@@ -1,4 +1,4 @@
-package demo.iocComplexDIXML;
+package iocDemo.iocComplexDIXML;
 
 import java.util.List;
 import java.util.Map;

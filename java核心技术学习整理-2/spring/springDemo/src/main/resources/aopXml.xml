@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--
+        常用表达式
+        execution(访问修饰符 ？ 返回类型 方法名 (参数) 异常)
+
+        //配置随意的访问修饰符下com包下的Bean类的add方法名称的，任意参数的方法
+        1) execution(* com.Bean.add(..))
+
+        //配置随意的访问修饰符下com包下的Bean类的任意方法名称的，任意参数的方法
+        2） execution(* com.Bean.*(..))
+
+        //配置随意的访问修饰符下com包下的任意类的任意方法名称的，任意参数的方法
+        3） execution(* com.*.*(..))
+
+        //配置随意的访问修饰符下任意包下的任意类的任意方法名称的，任意参数的方法
+        4） execution(* *.*(..))
+
+        //配置随意的访问修饰符下任意包下的任意类的以save开头的方法名称的，任意参数的方法
+        5） execution(* *.save*(..))
+    -->
+
+    <bean id="bean" class="aopDemo.aopXml.bean.Bean"></bean>
+    <bean id="aop" class="aopDemo.aopXml.Aop"></bean>
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="point" expression="execution(* aopDemo.aopXml.bean.Bean.*(..))"></aop:pointcut>
+        <!--配置切面-->
+        <aop:aspect ref="aop">
+            <!--前置通知-->
+            <!--<aop:before method="before" pointcut-ref="point"></aop:before>-->
+            <!--<aop:after method="after" pointcut-ref="point"></aop:after>-->
+            <aop:around method="around" pointcut-ref="point"></aop:around>
+        </aop:aspect>
+    </aop:config>
+</beans>

@@ -7,7 +7,7 @@
         开启注解扫描
         1.扫描类，方法，属性上的注解
     -->
-    <context:component-scan base-package="demo.icoAnnotation"></context:component-scan>
+    <context:component-scan base-package="iocDemo.icoAnnotation"></context:component-scan>
     <!--扫描属性上的注解-->
     <context:annotation-config></context:annotation-config>
 </beans>

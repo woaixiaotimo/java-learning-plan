@@ -1,4 +1,4 @@
-package demo.iocEasyDIXML;
+package iocDemo.iocEasyDIXML;
 
 public class Bean2 {
     public void method() {
