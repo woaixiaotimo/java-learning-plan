@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bean2" class="demo.iocEasyDIXML.Bean2"></bean>
+
+    <bean id="bean" class="demo.iocEasyDIXML.Bean" p:nameSpeace="名称空间注入">
+        <!--使用有参构造注入-->
+        <constructor-arg name="name" value="无名"></constructor-arg>
+        <!--使用set方式注入-->
+        <!--
+            name:属性名
+            value：属性值
+            ref：注入对象,指向bean
+        -->
+        <property name="name2" value="no name"></property>
+        <property name="bean2" ref="bean2"></property>
+    </bean>
+
+</beans>

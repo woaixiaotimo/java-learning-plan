@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="bean" class="demo.iocComplexDIXML.Bean">
+        <constructor-arg name="name" value="iocComplexDIXMLBean"></constructor-arg>
+        <property name="arrs">
+            <list>
+                <value>1</value>
+                <value>2</value>
+            </list>
+        </property>
+        <property name="list">
+            <list>
+                <value>3</value>
+                <value>4</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="A" value="1"></entry>
+                <entry key="B" value="2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="C">1</prop>
+                <prop key="D">2</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

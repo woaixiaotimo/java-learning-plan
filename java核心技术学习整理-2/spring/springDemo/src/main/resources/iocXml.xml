@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--使用类的无参构造函数来创建bean,如果类中没有无参的构造函数则会出现异常-->
+    <bean id="bean" class="demo.iocXML.Bean"></bean>
+    <!--
+        id:bean的唯一标识
+        name：基本不用了。跟id属性基本一样,但可以加各种符号
+        scope：
+            singleton：单例
+            prototype：多例
+            request：web项目中spring创建一个Bean对象,将对象存入request域中
+            session：web项目中spring创建一个Bean对象,将对象存入session域中
+            globalSeeeion：web项目中,应用在Porlet环境中则创建的对象放到globalSession中,
+                           如果没有Porlet环境globalSession相当于session
+        class：创建对象的所在类的全路径
+    -->
+    <!--<bean id="id" scope="prototype" class="demo.iocXML.Bean">-->
+    <!--</bean>-->
+</beans>
