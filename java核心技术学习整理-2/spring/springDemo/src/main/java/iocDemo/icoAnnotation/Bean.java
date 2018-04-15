@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 @Component("bean")
 @Scope
 public class Bean {
+
     public void method() {
         System.out.println("Bean - method");
     }
