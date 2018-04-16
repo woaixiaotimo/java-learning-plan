@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       default-autowire="byName"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+    <!--  c3p0连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="user" value="root"/>
+        <property name="password" value=""/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jdbctest"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <bean id="dao" class="affairs.affairsXml.Dao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
+    <bean id="service" class="affairs.affairsXml.Service">
+        <property name="dao" ref="dao"></property>
+    </bean>
+
+    <!--        配置事务        -->
+
+    <!-- 第一步: 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入 dataSource -->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 第二步: 配置事务增强 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 做事务操作 -->
+        <tx:attributes>
+            <!--设置进行事务操作方法匹配规则-->
+            <tx:method name="testAffairs" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 第三步: 配置切面 -->
+    <aop:config>
+        <!--切入点-->
+        <aop:pointcut id="pointcut1" expression="execution(* affairs.affairsXml.Service.*(..))"></aop:pointcut>
+        <!--切面-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut1"></aop:advisor>
+    </aop:config>
+
+
+</beans>
