@@ -4,6 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <properties resource="db.properties"></properties>
+
+    <!-- setting -->
+    <!-- 别名定义 -->
+    <!--<typeAliases>-->
+        <!--&lt;!&ndash;-->
+            <!--针对单个别名是的定义-->
+            <!--type：-->
+                <!--类型的路径-->
+            <!--alias:-->
+                <!--类型的别名-->
+
+        <!--&ndash;&gt;-->
+        <!--<typeAlias type="com.po.User" alias="user"></typeAlias>-->
+        <!--&lt;!&ndash;-->
+            <!--批量别名定义-->
+            <!--指定包名，mybatis自动定义别名(就是类名 首字母大小写都可以)-->
+        <!--&ndash;&gt;-->
+        <!--<package name="com.po"></package>-->
+    <!--</typeAliases>-->
 
     <!-- 和spring整合后 environments配置将废除-->
     <environments default="development">
@@ -17,12 +37,36 @@
                 <property name="username" value="root"/>
                 <property name="password" value=""/>
             </dataSource>
+
+            <!--<dataSource type="POOLED">-->
+            <!--<property name="driver" value="${jdbc.Driver}"/>-->
+            <!--<property name="url" value="${jdbc.url}"/>-->
+            <!--<property name="username" value="${jdbc.username}"/>-->
+            <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--</dataSource>-->
         </environment>
     </environments>
     <!-- 加载配置文件 -->
+    <!--<mappers>-->
+    <!--<mapper resource="sqlmap/User.xml"></mapper>-->
+    <!--</mappers>-->
+    <!--加载单个的映射文件-->
     <mappers>
-        <mapper resource="sqlmap/User.xml"></mapper>
+
+        <!--<mapper resource="mapper/UserMapper.xml"></mapper>-->
+        <!--<mapper url="mapper/UserMapper.xml"></mapper>-->
+        <!--
+            通过mapper 接口加载映射文件
+            遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名保持一致，且在一个目录中
+            上面规范的前提mapper的代理方法
+        -->
+        <!--<mapper class="com.mapper.UserMapper"/>-->
+
+        <!--批量加载-->
+        <package name="com.mapper"></package>
     </mappers>
+
+
 
 
 </configuration>
