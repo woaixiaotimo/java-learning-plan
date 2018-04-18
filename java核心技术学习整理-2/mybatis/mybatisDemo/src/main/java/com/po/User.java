@@ -1,6 +1,7 @@
 package com.po;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 啊Q on 2018/4/17.
@@ -12,6 +13,17 @@ public class User {
     private String sex;// 性别
     private Date birthday;// 生日
     private String address;// 地址
+
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
+    //用户创建的订单列表
+    private List<Orders> ordersList;
     public int getId() {
         return id;
     }
