@@ -1,6 +1,5 @@
 package com.mapper;
 
-import com.dao.UserDaoImpl;
 import com.po.User;
 import com.po.UserCustom;
 import com.po.UserQueryVo;
@@ -12,12 +11,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by 啊Q on 2018/4/17.
  */
-public class Test {
+public class UserTest {
     public static void main(String[] args) throws IOException, SQLException {
 
         //mybatis配置文件
@@ -39,6 +39,13 @@ public class Test {
         custom.setSex("1");
         custom.setUsername("张");
         queryVo.setUserCustom(custom);
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(1);
+        ids.add(2);
+        ids.add(3);
+        ids.add(24);
+        queryVo.setIds(ids);
+
 
         UserMapper mapper1 = sqlSession.getMapper(UserMapper.class);
         List<UserCustom> userCustomList = mapper1.findUserList(queryVo);
@@ -46,6 +53,8 @@ public class Test {
         int count = mapper.findUserCount(queryVo);
         System.out.println("count = " + count);
 
+        User user1 = mapper.findUserByIdMap(1);
+        System.out.println("user1 = " + user1);
 
         System.exit(0);
     }

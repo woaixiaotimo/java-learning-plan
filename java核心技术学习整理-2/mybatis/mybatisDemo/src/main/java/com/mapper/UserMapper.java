@@ -17,6 +17,8 @@ public interface UserMapper {
 
     int findUserCount(UserQueryVo userQueryVo) throws SQLException;
 
+    User findUserByIdMap(int id) throws SQLException;
+
     User findUserById(int id) throws SQLException;
 
     void insertUser(User user) throws SQLException;
