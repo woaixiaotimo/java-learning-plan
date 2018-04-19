@@ -1,12 +1,13 @@
 package com.po;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by 啊Q on 2018/4/17.
  */
-public class User {
+public class User implements Serializable {
     //属性名和数据库表的字段对应
     private int id;
     private String username;// 用户姓名

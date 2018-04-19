@@ -11,6 +11,8 @@
 -->
 <mapper namespace="com.mapper.UserMapper">
 
+    <!--开启二级缓存-->
+    <cache/>
     <!--
         id:sql片段唯一标识
         经验，是基于单表来定义sql片段，这样这个sql片段可重用性高
