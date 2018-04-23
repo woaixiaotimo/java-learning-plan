@@ -39,6 +39,7 @@ public class ModelAndViewController implements Controller {
         //视图
         modelAndView.setViewName("/modelAndView/modelAndView.jsp");
 
+        System.out.println("使用SimpleControllerHandlerAdapter适配器，适配的实现Controller接口的Controller层- ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)");
         return modelAndView;
 
     }
