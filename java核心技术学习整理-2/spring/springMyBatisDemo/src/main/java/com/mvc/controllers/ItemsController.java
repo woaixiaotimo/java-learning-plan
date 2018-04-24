@@ -17,7 +17,6 @@ public class ItemsController {
 
     @RequestMapping("/queryItems")
     public ModelAndView queryItems() throws Exception {
-        System.out.println(" =============== ");
         List<ItemsCustom> itemsCustomList = itemsService.findItemList(null);
 
         ModelAndView modelAndView = new ModelAndView();
