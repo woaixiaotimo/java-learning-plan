@@ -24,7 +24,7 @@
         <!-- commons-fileupload -->
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <!-- mybatis-spring -->
-        <mybatis-spring.version>1.2.0</mybatis-spring.version>
+        <mybatis-spring.version>1.3.0</mybatis-spring.version>
         <!-- commons-dbcp -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
     </properties>
@@ -55,13 +55,11 @@
         <!--<artifactId>jsp-api</artifactId>-->
         <!--<version>2.2</version>-->
         <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>javax.servlet</groupId>-->
-        <!--<artifactId>jstl</artifactId>-->
-        <!--<version>1.2</version>-->
-        <!--</dependency>-->
-
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
 
 
         <!--spring相关包-->
@@ -117,9 +115,9 @@
 
         <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
         <!--<dependency>-->
-            <!--<groupId>c3p0</groupId>-->
-            <!--<artifactId>c3p0</artifactId>-->
-            <!--<version>0.9.1.2</version>-->
+        <!--<groupId>c3p0</groupId>-->
+        <!--<artifactId>c3p0</artifactId>-->
+        <!--<version>0.9.1.2</version>-->
         <!--</dependency>-->
 
 
