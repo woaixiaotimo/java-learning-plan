@@ -8,4 +8,9 @@ import java.util.List;
 public interface ItemsService {
 
     List<ItemsCustom> findItemList(ItemsQueryVo queryVo) throws Exception;
+
+    ItemsCustom findItemsById(Integer id);
+
+    void updateItems(Integer id, ItemsCustom itemsCustom) throws Exception;
+
 }

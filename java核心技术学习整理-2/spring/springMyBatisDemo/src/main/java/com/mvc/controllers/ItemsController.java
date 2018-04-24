@@ -17,12 +17,19 @@ public class ItemsController {
 
     @RequestMapping("/queryItems")
     public ModelAndView queryItems() throws Exception {
-        List<ItemsCustom> itemsCustomList = itemsService.findItemList(null);
+        List<ItemsCustom> itemsList = itemsService.findItemList(null);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("itemsCustomList", itemsCustomList);
+        modelAndView.addObject("itemsList", itemsList);
 
-        modelAndView.setViewName("/items/queryItems.jsp");
+        modelAndView.setViewName("/jsp/items/itemsList.jsp");
         return modelAndView;
     }
+
+
+    @RequestMapping("/queryItems")
+    public ModelAndView queryItems() throws Exception {
+        ItemsCustom itemsCustom = itemsService.findItemsById();
+    }
+
 }
