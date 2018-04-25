@@ -34,12 +34,11 @@ public class ItemServiceImpl implements ItemsService {
         return itemsCustom;
     }
 
-    public void updateItems(Integer id, ItemsCustom itemsCustom) throws Exception {
+    public boolean updateItems(Integer id, ItemsCustom itemsCustom) throws Exception {
         //todo - 校验传入数据
 
         //更新商品信息 - 使用updateByPrimaryKeyWithBLOBs根据id更新items表中所有字段包括大文本信息
         itemsCustom.setId(id);
-        itemsMapper.updateByPrimaryKeyWithBLOBs(itemsCustom);
-
+        return itemsMapper.updateByPrimaryKeyWithBLOBs(itemsCustom) > 0;
     }
 }
