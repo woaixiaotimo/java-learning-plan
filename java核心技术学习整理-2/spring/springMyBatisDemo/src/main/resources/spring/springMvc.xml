@@ -6,7 +6,7 @@
 
     <!--
        组件扫描：
-           扫描com.mvc.controllers下的类
+           扫描com.mvc.controllers 和 service 下的类
    -->
     <context:component-scan base-package="com.mvc.controllers"/>
     <context:component-scan base-package="com.mvc.service.impl"/>
@@ -17,7 +17,6 @@
                 解析jsp，默认使用jstl标签，classpath下必须要有jstl的包
     -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-
         <!--prefix suffix是spring MVC视图解析器的一个属性，-->
         <!--prefix ： 是指访问页面的前缀，指定页面存放的文件夹-->
         <!--suffix ： 是指文件的后缀名，常见的后缀名有html,jsp,php,txt,mp3-->
@@ -33,16 +32,16 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <!-- 转换器 -->
         <property name="converters">
-            <list>
+            <set>
                 <!-- 日期类型转换 -->
                 <bean class="com.mvc.controllers.converter.CustomDateConverter">
                     <property name="datePattern" value="yyyy-MM-dd HH:mm:ss"/>
                 </bean>
-            </list>
+            </set>
         </property>
     </bean>
 
-    <!-- 添加controller返回Object类型json支持 - 在方法上需要添加@ResponseBody -->
+     <!--添加controller返回Object类型json支持 - 在方法上需要添加@ResponseBody-->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
             <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
