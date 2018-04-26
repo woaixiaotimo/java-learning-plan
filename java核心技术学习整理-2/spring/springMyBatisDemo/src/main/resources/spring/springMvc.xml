@@ -25,21 +25,37 @@
         <!--<property name="suffix" value="/"></property>-->
     </bean>
 
-    <!--
-        使用 mvc:annotation-driven代替上边注解映射器和注解适配器配置
-            mvc:annotation-driven默认加载很多的参数绑定方法，
-                比如json转换解析器就默认加载了，如果使用mvc:annotation-driven不用配置上边的RequestMappingHandlerMapping和RequestMappingHandlerAdapter
-                实际开发时使用mvc:annotation-driven
-     -->
+    <!-- 启动SpringMvc注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 自定义参数绑定 - Date -->
     <mvc:annotation-driven conversion-service="conversionService"/>
-    <!-- 自定义参数绑定 -->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <!-- 转换器 -->
         <property name="converters">
             <list>
                 <!-- 日期类型转换 -->
-                <bean class="com.mvc.controllers.converter.CustomDateConverter"/>
+                <bean class="com.mvc.controllers.converter.CustomDateConverter">
+                    <property name="datePattern" value="yyyy-MM-dd HH:mm:ss"/>
+                </bean>
             </list>
         </property>
     </bean>
+
+    <!-- 添加controller返回Object类型json支持 - 在方法上需要添加@ResponseBody -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+            <bean id="fastJsonHttpMessageConverter"
+                  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>

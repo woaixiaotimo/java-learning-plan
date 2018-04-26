@@ -105,15 +105,15 @@ public class ItemsController {
 
 
 //    //重定向 转发
-//    @RequestMapping("/testJson")
-//    @ResponseBody
-//    public Map<String ,String > testJson() throws Exception {
-//        Map map = new HashMap<String ,String >();
-//        map.put("a","a");
-//        map.put("b","b");
-//        map.put("c","c");
-//        return map;
-//    }
+    @RequestMapping("/testJson")
+    @ResponseBody
+    public Map<String ,String > testJson() throws Exception {
+        Map map = new HashMap<String ,String >();
+        map.put("a","a");
+        map.put("b","b");
+        map.put("c","c");
+        return map;
+    }
 
 //-------------------------------返回 void-------------------------------------
 //    在controller形参上可以定义request和response
