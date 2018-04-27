@@ -41,4 +41,12 @@ public class ItemServiceImpl implements ItemsService {
         itemsCustom.setId(id);
         return itemsMapper.updateByPrimaryKeyWithBLOBs(itemsCustom) > 0;
     }
+
+    public int deleteItems(Integer[] id) throws Exception {
+        for (int i = 0; i < id.length; i++) {
+            System.out.println("id[i] = " + id[i]);
+
+        }
+        return  itemsMapperCustom.deleteItems(id);
+    }
 }

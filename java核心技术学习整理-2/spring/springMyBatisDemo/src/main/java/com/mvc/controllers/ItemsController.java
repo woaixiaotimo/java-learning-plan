@@ -34,13 +34,34 @@ public class ItemsController {
     public ModelAndView queryItems(ItemsQueryVo queryVo) throws Exception {
 
 
-
         List<ItemsCustom> itemsList = itemsService.findItemList(queryVo);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
 
         modelAndView.setViewName("/jsp/items/itemsList.jsp");
+        return modelAndView;
+    }
+
+    //数组绑定 - input的name属性设置为itemsId即可，即与controller参数名相同
+    @RequestMapping("/deleteItems")
+    public String deleteItems(Integer[] itemsId) throws Exception {
+
+        //删除
+//        itemsService.deleteItems(itemsId);
+        return "forward:queryItems.action";
+    }
+
+    @RequestMapping("/ediyItemsQuery")
+    public ModelAndView ediyItemsQuery(ItemsQueryVo queryVo) throws Exception {
+
+
+        List<ItemsCustom> itemsList = itemsService.findItemList(queryVo);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("itemsList", itemsList);
+
+        modelAndView.setViewName("/jsp/items/ediyItemsQuery.jsp");
         return modelAndView;
     }
 //-------------------------使用 ModelAndView 返回值进行修改--------------------------------------
@@ -80,7 +101,8 @@ public class ItemsController {
     //通过required属性指定参数是否需要传入，如果设为true且未传入则返回400
     //通过defaultValue属性设置默认值，如果参数未传入则使用默认值
     @RequestMapping("/editItems")
-    public String editItems(Model model, @RequestParam(value = "id", required = true, defaultValue = "1") Integer items_id) throws Exception {
+    public String editItems(Model model, @RequestParam(value = "id", required = true, defaultValue = "1") Integer
+            items_id) throws Exception {
 
 
         ItemsCustom itemsCustom = itemsService.findItemsById(items_id);
@@ -92,7 +114,8 @@ public class ItemsController {
 
     //重定向 转发
     @RequestMapping("/editItemsSubmit")
-    public String editItemsSubmit(HttpServletRequest request, HttpServletResponse response, Integer id, ItemsCustom itemsCustom) throws Exception {
+    public String editItemsSubmit(HttpServletRequest request, HttpServletResponse response, Integer id, ItemsCustom
+            itemsCustom) throws Exception {
 
         itemsService.updateItems(id, itemsCustom);
 
@@ -106,15 +129,14 @@ public class ItemsController {
         return "forward:queryItems.action";
     }
 
-
-//    //重定向 转发
+//    返回json
     @RequestMapping("/testJson")
     @ResponseBody
-    public Map<String ,String > testJson() throws Exception {
-        Map map = new HashMap<String ,String >();
-        map.put("a","a");
-        map.put("b","b");
-        map.put("c","c");
+    public Map<String, String> testJson() throws Exception {
+        Map map = new HashMap<String, String>();
+        map.put("a", "a");
+        map.put("b", "b");
+        map.put("c", "c");
         return map;
     }
 

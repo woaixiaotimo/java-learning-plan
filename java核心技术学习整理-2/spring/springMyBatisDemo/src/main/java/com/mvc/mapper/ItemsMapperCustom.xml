@@ -16,4 +16,13 @@
             <include refid="query_items_where"></include>
         </where>
     </select>
+
+    <delete id="deleteItems" parameterType="List">
+        DELETE FROM items WHERE id in
+        <foreach collection="array" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
 </mapper>

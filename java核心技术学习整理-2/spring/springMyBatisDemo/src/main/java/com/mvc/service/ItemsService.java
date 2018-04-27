@@ -13,4 +13,6 @@ public interface ItemsService {
 
     boolean updateItems(Integer id, ItemsCustom itemsCustom) throws Exception;
 
+    int deleteItems(Integer[] id) throws Exception;
+
 }

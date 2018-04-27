@@ -18,7 +18,18 @@ public class ItemsQueryVo {
         this.itemsCustom = itemsCustom;
     }
 
+
     private Items items;
+
+    public UserCustom getUserCustom() {
+        return userCustom;
+    }
+
+    public void setUserCustom(UserCustom userCustom) {
+        this.userCustom = userCustom;
+    }
+
+    private UserCustom userCustom;
 
     private ItemsCustom itemsCustom;
 }
