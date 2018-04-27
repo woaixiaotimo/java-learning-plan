@@ -1,6 +1,7 @@
 package com.mvc.controllers;
 
 import com.mvc.po.ItemsCustom;
+import com.mvc.po.ItemsQueryVo;
 import com.mvc.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -30,8 +31,11 @@ public class ItemsController {
     private ItemsService itemsService;
 
     @RequestMapping("/queryItems")
-    public ModelAndView queryItems() throws Exception {
-        List<ItemsCustom> itemsList = itemsService.findItemList(null);
+    public ModelAndView queryItems(ItemsQueryVo queryVo) throws Exception {
+
+
+
+        List<ItemsCustom> itemsList = itemsService.findItemList(queryVo);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
@@ -89,7 +93,6 @@ public class ItemsController {
     //重定向 转发
     @RequestMapping("/editItemsSubmit")
     public String editItemsSubmit(HttpServletRequest request, HttpServletResponse response, Integer id, ItemsCustom itemsCustom) throws Exception {
-
 
         itemsService.updateItems(id, itemsCustom);
 
