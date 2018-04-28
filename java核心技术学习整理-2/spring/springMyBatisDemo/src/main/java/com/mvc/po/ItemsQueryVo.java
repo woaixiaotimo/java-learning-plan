@@ -1,6 +1,19 @@
 package com.mvc.po;
 
+import java.util.List;
+
 public class ItemsQueryVo {
+
+
+    private Items items;
+
+    private UserCustom userCustom;
+
+    private ItemsCustom itemsCustom;
+
+
+    private List<ItemsCustom> itemsCustomList;
+
 
     public Items getItems() {
         return items;
@@ -18,9 +31,6 @@ public class ItemsQueryVo {
         this.itemsCustom = itemsCustom;
     }
 
-
-    private Items items;
-
     public UserCustom getUserCustom() {
         return userCustom;
     }
@@ -29,7 +39,11 @@ public class ItemsQueryVo {
         this.userCustom = userCustom;
     }
 
-    private UserCustom userCustom;
+    public List<ItemsCustom> getItemsCustomList() {
+        return itemsCustomList;
+    }
 
-    private ItemsCustom itemsCustom;
+    public void setItemsCustomList(List<ItemsCustom> itemsCustomList) {
+        this.itemsCustomList = itemsCustomList;
+    }
 }

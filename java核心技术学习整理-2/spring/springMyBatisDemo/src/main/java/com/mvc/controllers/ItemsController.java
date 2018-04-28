@@ -52,8 +52,9 @@ public class ItemsController {
         return "forward:queryItems.action";
     }
 
-    @RequestMapping("/ediyItemsQuery")
-    public ModelAndView ediyItemsQuery(ItemsQueryVo queryVo) throws Exception {
+    //批量修改商品页面
+    @RequestMapping("/editItemsQuery")
+    public ModelAndView editItemsQuery(ItemsQueryVo queryVo) throws Exception {
 
 
         List<ItemsCustom> itemsList = itemsService.findItemList(queryVo);
@@ -61,9 +62,18 @@ public class ItemsController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
 
-        modelAndView.setViewName("/jsp/items/ediyItemsQuery.jsp");
+        modelAndView.setViewName("/jsp/items/editItemsQuery.jsp");
         return modelAndView;
     }
+
+    //批量修改商品页面提交
+    @RequestMapping("/editItemsAllSubmit")
+    public String editItemsAllSubmit(ItemsQueryVo queryVo) throws Exception {
+
+        return "success";
+    }
+
+
 //-------------------------使用 ModelAndView 返回值进行修改--------------------------------------
 
 //
@@ -129,7 +139,7 @@ public class ItemsController {
         return "forward:queryItems.action";
     }
 
-//    返回json
+    //    返回json
     @RequestMapping("/testJson")
     @ResponseBody
     public Map<String, String> testJson() throws Exception {
