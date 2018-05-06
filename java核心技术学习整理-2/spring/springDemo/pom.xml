@@ -56,5 +56,12 @@
             <version>0.9.5</version>
         </dependency>
 
+        <!-- 引入sqlserver数据库链接包 -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
+
     </dependencies>
 </project>
