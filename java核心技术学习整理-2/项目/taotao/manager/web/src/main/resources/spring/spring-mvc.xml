@@ -9,7 +9,6 @@
 
     <!--扫描 conteoller-->
     <context:component-scan base-package="com.manager.web"/>
-
     <!--开启注解-->
     <mvc:annotation-driven/>
 
@@ -21,6 +20,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!--资源映射-->
-    <mvc:resources mapping="/WEB-INF/css/**" location="/WEB-INF/css/"></mvc:resources>
-    <mvc:resources mapping="/WEB-INF/js/**" location="/WEB-INF/js/"></mvc:resources>
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 </beans>
