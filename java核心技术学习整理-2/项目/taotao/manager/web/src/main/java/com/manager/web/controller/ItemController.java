@@ -2,7 +2,7 @@ package com.manager.web.controller;
 
 import com.manager.pojo.mybatisPojo.TbItem;
 import com.manager.service.ItemService;
-import com.taotao.common.pojo.EUDataGridResult;
+import com.common.pojo.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

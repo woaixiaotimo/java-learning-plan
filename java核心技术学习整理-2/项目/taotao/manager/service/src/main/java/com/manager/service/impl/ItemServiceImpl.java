@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.taotao.common.pojo.EUDataGridResult;
+import com.common.pojo.EUDataGridResult;
 
 import java.util.List;
 
