@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/item")
 public class ItemController {
 
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping("/item/{itemId}")
+    @RequestMapping("/{itemId}")
     @ResponseBody
     public TbItem getItemById(@PathVariable long itemId) {
         return itemService.getItemById(itemId);
     }
 
-    @RequestMapping("/item/list")
+    @RequestMapping("/list")
     @ResponseBody
     public EUDataGridResult getItemList(int page, int rows) {
         return itemService.getItemList(page, rows);
