@@ -8,7 +8,7 @@ import java.io.*;
 
 public class FtpFileTransfer {
     private FTPClient ftpClient = null;//ftp客户端对象
-    private static String hostname = null;//FTP主机名称
+    private static String host = null;//FTP主机名称
     private static Integer port = 0;    //FTP服务端口
     private static String userName = null;//FTP服务器登录用户名
     private static String passwd=null;//FTP服务器登录密码
@@ -18,8 +18,8 @@ public class FtpFileTransfer {
     /**
      * 从配置文件中获取配置值
      */
-    public FtpFileTransfer(String hostname,int port,String userName,String passwd){
-        this.hostname = hostname;
+    public FtpFileTransfer(String host, int port, String userName, String passwd){
+        this.host = host;
         this.port = port;
         this.userName = userName;
         this.passwd = passwd;
@@ -54,6 +54,7 @@ public class FtpFileTransfer {
             InputStream is = new FileInputStream(file);
             return uploadFileStream(is, ftpPath, targetName);
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -85,7 +86,13 @@ public class FtpFileTransfer {
             if(ret){
                 ftpClient.setBufferSize(1024);
                 ftpClient.setControlEncoding("utf-8");
-                ftpClient.enterLocalPassiveMode();
+
+                //几种上传模式
+                ftpClient.enterLocalPassiveMode();//设置上传模式
+//                ftpClient.enterLocalActiveMode();
+//                ftpClient.enterRemoteActiveMode();
+//                ftpClient.enterRemotePassiveMode();
+
                 ret = ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
                 if(ret){
                     ret = ftpClient.storeFile(targetName, is);
@@ -216,7 +223,7 @@ public class FtpFileTransfer {
         boolean ret = false;
         ftpClient = new FTPClient();
         try {
-            ftpClient.connect(hostname, port);
+            ftpClient.connect(host, port);
             ret = ftpClient.login(userName, passwd);
             logger.info("Finished login the ftp server, result="+ret);
         } catch (Exception e) {
