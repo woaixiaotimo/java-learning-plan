@@ -58,6 +58,17 @@ public class FtpFileTransfer {
             return false;
         }
     }
+
+    /**
+     * 方法描述：上传文件
+     * @param is 待上传的文件
+     * @param ftpPath 目标文件路径
+     * @param targetName 目标名称
+     * @return
+     */
+    public boolean uploadFile(InputStream is,String ftpPath,String targetName){
+        return uploadFileStream(is, ftpPath, targetName);
+    }
     /**
      * 方法描述：上传文件
      * @param is 源文件流
