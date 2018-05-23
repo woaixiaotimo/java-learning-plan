@@ -12,7 +12,8 @@ public class FtpTest {
         int ftpPort = 21;
         String ftpUsername = "what";
         String ftpPwd = "meiyoumima";
-        String ftpWritePath = "/write";
+        String ftpWritePath = "/write/image/2018/05/23";
+
         String writePath = "";
         String uploadFileName = "A.png";
 
