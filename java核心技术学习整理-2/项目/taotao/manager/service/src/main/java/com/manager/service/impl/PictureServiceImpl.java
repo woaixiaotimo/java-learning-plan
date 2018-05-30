@@ -58,8 +58,6 @@ public class PictureServiceImpl implements PictureService {
             String imgPath = new DateTime().toString("/yyyy/MM/dd");
             boolean result = ftp.uploadFile(multipartFile.getInputStream(), FTP_BASE_PATH + imgPath, newName);
 
-            System.out.println("FTP_BASE_PATH + imgPath = " + FTP_BASE_PATH + imgPath);
-            System.out.println("newName = " + newName);
             if (result) {
                 resultMap.put("error", 0);
                 resultMap.put("url", IMG_BASE_URL + imgPath + "/" + newName);

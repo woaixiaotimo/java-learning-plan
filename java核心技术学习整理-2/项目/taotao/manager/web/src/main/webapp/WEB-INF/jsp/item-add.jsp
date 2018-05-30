@@ -106,8 +106,8 @@
 			});
 		});
 		//把json对象转换成字符串
-		paramJson = JSON.stringify(paramJson);
-		$("#itemAddForm [name=itemParams]").val(paramJson);
+//		paramJson = JSON.stringify(paramJson);
+//		$("#itemAddForm [name=itemParams]").val(paramJson);
 		
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串

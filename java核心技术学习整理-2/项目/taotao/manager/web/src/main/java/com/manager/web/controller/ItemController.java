@@ -1,5 +1,6 @@
 package com.manager.web.controller;
 
+import com.common.pojo.TaotaoResult;
 import com.manager.pojo.mybatisPojo.TbItem;
 import com.manager.service.ItemService;
 import com.common.pojo.EUDataGridResult;
@@ -28,4 +29,10 @@ public class ItemController {
         return itemService.getItemList(page, rows);
     }
 
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public TaotaoResult createItem(TbItem tbItem,String desc) throws Exception {
+        return itemService.createItem(tbItem,desc);
+    }
 }

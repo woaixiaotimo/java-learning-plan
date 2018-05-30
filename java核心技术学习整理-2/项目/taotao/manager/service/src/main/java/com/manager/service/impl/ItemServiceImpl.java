@@ -1,7 +1,11 @@
 package com.manager.service.impl;
 
+import com.common.pojo.TaotaoResult;
+import com.common.utils.IDUtils;
+import com.manager.mapper.mybatisMapper.TbItemDescMapper;
 import com.manager.mapper.mybatisMapper.TbItemMapper;
 import com.manager.pojo.mybatisPojo.TbItem;
+import com.manager.pojo.mybatisPojo.TbItemDesc;
 import com.manager.pojo.mybatisPojo.TbItemExample;
 import com.manager.pojo.mybatisPojo.TbItemExample.Criteria;
 import com.manager.service.ItemService;
@@ -12,6 +16,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.pojo.EUDataGridResult;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,6 +35,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemMapper itemMapper;
+    @Autowired
+    private TbItemDescMapper tbItemDescMapper;
 
     @Override
     public TbItem getItemById(long itemId) {
@@ -61,6 +68,37 @@ public class ItemServiceImpl implements ItemService {
         PageInfo pageInfo = new PageInfo(list);
         result.setTotal(pageInfo.getTotal());
         return result;
+    }
+
+
+    @Override
+    public TaotaoResult createItem(TbItem item, String desc) throws Exception {
+        //item补全
+        //生成商品ID
+        Long itemId = IDUtils.genItemId();
+        item.setId(itemId);
+        item.setStatus((byte) 1);
+        item.setCreated(new Date());
+        item.setUpdated(new Date());
+        //插入到数据库
+        itemMapper.insert(item);
+        TaotaoResult taotaoResult = insertItemsDesc(itemId, desc);
+        if (taotaoResult.getStatus() != 200) {
+            throw new Exception();
+        }
+
+        return TaotaoResult.ok();
+    }
+
+    //添加商品描述
+    private TaotaoResult insertItemsDesc(long itemId, String desc) {
+        TbItemDesc tbItemDesc = new TbItemDesc();
+        tbItemDesc.setItemId(itemId);
+        tbItemDesc.setItemDesc(desc);
+        tbItemDesc.setCreated(new Date());
+        tbItemDesc.setUpdated(new Date());
+        tbItemDescMapper.insert(tbItemDesc);
+        return TaotaoResult.ok();
     }
 
 
