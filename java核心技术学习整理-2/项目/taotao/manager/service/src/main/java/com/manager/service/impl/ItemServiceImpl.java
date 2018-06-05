@@ -4,10 +4,12 @@ import com.common.pojo.TaotaoResult;
 import com.common.utils.IDUtils;
 import com.manager.mapper.mybatisMapper.TbItemDescMapper;
 import com.manager.mapper.mybatisMapper.TbItemMapper;
+import com.manager.mapper.mybatisMapper.TbItemParamMapper;
 import com.manager.pojo.mybatisPojo.TbItem;
 import com.manager.pojo.mybatisPojo.TbItemDesc;
 import com.manager.pojo.mybatisPojo.TbItemExample;
 import com.manager.pojo.mybatisPojo.TbItemExample.Criteria;
+import com.manager.pojo.mybatisPojo.TbItemParam;
 import com.manager.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +37,14 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemMapper itemMapper;
+
+
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
+
+    @Autowired
+    private TbItemParamMapper tbItemParamMapper;
+
 
     @Override
     public TbItem getItemById(long itemId) {
@@ -72,7 +80,7 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public TaotaoResult createItem(TbItem item, String desc) throws Exception {
+    public TaotaoResult createItem(TbItem item, String desc, String param) throws Exception {
         //item补全
         //生成商品ID
         Long itemId = IDUtils.genItemId();
@@ -83,10 +91,25 @@ public class ItemServiceImpl implements ItemService {
         //插入到数据库
         itemMapper.insert(item);
         TaotaoResult taotaoResult = insertItemsDesc(itemId, desc);
+
         if (taotaoResult.getStatus() != 200) {
             throw new Exception();
         }
 
+        TaotaoResult taotaoResult2 = insertItemsParam(itemId, param);
+
+        if (taotaoResult2.getStatus() != 200) {
+            throw new Exception();
+        }
+
+        return TaotaoResult.ok();
+    }
+
+    private TaotaoResult insertItemsParam(Long itemId, String param) {
+        TbItemParam tbItemParam = new TbItemParam();
+        tbItemParam.setId(itemId);
+        tbItemParam.setParamData(param);
+        tbItemParamMapper.insert(tbItemParam);
         return TaotaoResult.ok();
     }
 
