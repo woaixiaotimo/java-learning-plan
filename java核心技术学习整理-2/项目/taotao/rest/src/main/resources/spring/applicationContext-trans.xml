@@ -30,7 +30,7 @@
     <!-- 切面 -->
     <aop:config>
         <aop:advisor advice-ref="txAdvice"
-                     pointcut="execution(* com.manager.service.*.*(..))" />
+                     pointcut="execution(* com.rest.service.*.*(..))" />
     </aop:config>
 
     <!--开启注解事务-->

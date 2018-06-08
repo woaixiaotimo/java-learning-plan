@@ -18,6 +18,7 @@
         <module>service</module>
         <module>mapper</module>
         <module>web</module>
+        <module>../portal</module>
     </modules>
 
     <dependencies>

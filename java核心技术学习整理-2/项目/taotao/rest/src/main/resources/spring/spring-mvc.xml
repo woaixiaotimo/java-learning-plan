@@ -8,7 +8,7 @@
     <!--由于该文件由web.xml中DispatcherServlet类加载则将扫描到的bean注册到springmvc容器中-->
 
     <!--扫描 conteoller-->
-    <context:component-scan base-package="com.manager.web"/>
+    <context:component-scan base-package="com.rest.controller"/>
     <!--开启注解-->
     <mvc:annotation-driven/>
 
@@ -19,16 +19,5 @@
         <!--后缀-->
         <property name="suffix" value=".jsp"/>
     </bean>
-    <!--资源映射-->
-    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
-    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 
-    <!-- 定义文件上传解析器 -->
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 设定默认编码 -->
-        <property name="defaultEncoding" value="UTF-8"></property>
-        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
-        <property name="maxUploadSize" value="5242880"></property>
-    </bean>
 </beans>
