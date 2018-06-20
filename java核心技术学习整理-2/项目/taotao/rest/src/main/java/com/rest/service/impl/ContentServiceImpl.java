@@ -41,7 +41,6 @@ public class ContentServiceImpl implements ContentService {
             e.printStackTrace();
         }
 
-
         TbContentExample example = new TbContentExample();
         TbContentExample.Criteria criteria = example.createCriteria();
         criteria.andCategoryIdEqualTo(contentCid);

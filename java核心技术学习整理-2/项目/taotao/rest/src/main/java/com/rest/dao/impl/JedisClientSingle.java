@@ -28,6 +28,7 @@ public class JedisClientSingle implements JedisClient {
 
     @Override
     public String hget(String hkey, String key) {
+        boolean a = jedisPool.isClosed();
         Jedis jedis = jedisPool.getResource();
         String string = jedis.hget(hkey, key);
         jedis.close();
