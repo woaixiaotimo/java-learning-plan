@@ -9,19 +9,14 @@ import java.util.concurrent.Executors;
 public class UseCyslicBarrier {
 
     static class Runner implements Runnable {
-
-
         CyclicBarrier barrier;
         String name;
-
         public Runner(CyclicBarrier barrier, String name) {
             this.barrier = barrier;
             this.name = name;
         }
-
         @Override
         public void run() {
-
             try {
                 Thread.sleep(1000 * (new Random().nextInt(5)));
                 System.out.println(name + " 准备OK");
@@ -35,7 +30,6 @@ public class UseCyslicBarrier {
 
         }
     }
-
     public static void main(String[] args) {
         CyclicBarrier barrier = new CyclicBarrier(3);
         ExecutorService executorService = Executors.newFixedThreadPool(3);
