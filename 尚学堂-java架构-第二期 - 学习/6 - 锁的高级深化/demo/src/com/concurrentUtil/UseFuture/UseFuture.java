@@ -1,6 +1,7 @@
-package com.concurrentUtil;
+package com.concurrentUtil.UseFuture;
 
 import java.util.concurrent.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class UseFuture implements Callable<String> {
 
@@ -18,7 +19,7 @@ public class UseFuture implements Callable<String> {
         //1、submit可以传入实现callable接口的实现对象
         //2、submit方法有返回值
         Future f = executor.submit(future);
-
+        System.out.println("请求完毕 结果为：" + f.get());
         try {
             Thread.sleep(1000);
         } catch (Exception e) {
@@ -31,6 +32,7 @@ public class UseFuture implements Callable<String> {
 
     @Override
     public String call() throws Exception {
+
         Thread.sleep(3000);
         String result = this.str + " 处理完成";
         return result;
