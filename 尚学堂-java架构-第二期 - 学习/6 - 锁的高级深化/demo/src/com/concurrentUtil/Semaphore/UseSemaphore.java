@@ -32,7 +32,5 @@ public class UseSemaphore {
             executorService.execute(run);
         }
         Thread.sleep(10);
-
-
     }
 }
