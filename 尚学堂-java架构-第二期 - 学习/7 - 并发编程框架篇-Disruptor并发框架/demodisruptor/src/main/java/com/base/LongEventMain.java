@@ -12,7 +12,7 @@ public class LongEventMain {
 
     public static Long beforeTime= System.currentTimeMillis();
 
-    public static void main(String[] args) {
+    public  static void main(String[] args) {
         //创建线程池
         ExecutorService executor = Executors.newCachedThreadPool();
         //创建工厂
