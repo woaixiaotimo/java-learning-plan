@@ -42,7 +42,9 @@ public class Main {
 //        disruptor.after(handler4, handler5).handleEventsWith(handler3);
 
         //顺序操作
-        disruptor.handleEventsWith(new Handler1()).handleEventsWith(new Handler2()).handleEventsWith(new Handler3());
+        disruptor.handleEventsWith(new Handler1()).
+                handleEventsWith(new Handler2()).
+                handleEventsWith(new Handler3());
 
 
         disruptor.start();
