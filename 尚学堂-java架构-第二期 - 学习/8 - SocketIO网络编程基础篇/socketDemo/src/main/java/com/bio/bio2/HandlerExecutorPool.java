@@ -1,4 +1,4 @@
-package com.bio2;
+package com.bio.bio2;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;

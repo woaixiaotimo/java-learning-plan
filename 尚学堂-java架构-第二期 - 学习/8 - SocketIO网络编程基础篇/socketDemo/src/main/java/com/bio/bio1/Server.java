@@ -1,8 +1,6 @@
-package com.bio2;
+package com.bio.bio1;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,18 +10,13 @@ public class Server {
 
     public static void main(String[] args) {
         ServerSocket server = null;
-        BufferedReader in = null;
-        PrintWriter out = null;
         try {
             server = new ServerSocket(PORT);
             System.out.println("server start");
             //进行阻塞
-            Socket socket = null;
-            HandlerExecutorPool executorPool = new HandlerExecutorPool(50, 1000);
-            while (true) {
-                socket = server.accept();
-                executorPool.execute(new ServerHanler(socket));
-            }
+            Socket socket = server.accept();
+
+            new Thread(new ServerHanler(socket)).start();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
