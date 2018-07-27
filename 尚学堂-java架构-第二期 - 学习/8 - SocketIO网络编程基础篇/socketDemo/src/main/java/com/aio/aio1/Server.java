@@ -1,4 +1,4 @@
-package com.aio;
+package com.aio.aio1;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -19,7 +19,7 @@ public class Server {
 
     public Server(int port) {
         try {
-            //创建一个缓存池
+            //创建一个带缓存的线程池
             executorService = Executors.newCachedThreadPool();
             //创建线程组
             threadGroup = AsynchronousChannelGroup.withCachedThreadPool(executorService, 1);

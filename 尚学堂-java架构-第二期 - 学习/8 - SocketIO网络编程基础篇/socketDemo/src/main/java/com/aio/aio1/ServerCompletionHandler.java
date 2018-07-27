@@ -1,7 +1,5 @@
-package com.aio;
+package com.aio.aio1;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
@@ -13,15 +11,15 @@ public class ServerCompletionHandler implements java.nio.channels.CompletionHand
         //当有下一个客户端介入的时候，直接调用Server的accept方法，这样执行下去保证有多个客户端都可以阻塞
         attachment.assc.accept(attachment, this);
         read(result);
-        try {
-            InetSocketAddress address =  (InetSocketAddress)result.getLocalAddress();
-            System.out.println("address = " + address.getAddress());
-            System.out.println("address = " + address.getPort());
-            System.out.println("address = " + address.getHostName());
-            System.out.println("address = " + address.getHostString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            InetSocketAddress address =  (InetSocketAddress)result.getLocalAddress();
+//            System.out.println("address = " + address.getAddress());
+//            System.out.println("address = " + address.getPort());
+//            System.out.println("address = " + address.getHostName());
+//            System.out.println("address = " + address.getHostString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
