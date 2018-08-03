@@ -5,18 +5,21 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.ReferenceCountUtil;
 
-public class ClientHandler  extends ChannelHandlerAdapter {
+public class ClientHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
-            //do something msg
-            ByteBuf buf = (ByteBuf)msg;
-            byte[] data = new byte[buf.readableBytes()];
-            buf.readBytes(data);
-            String request = new String(data, "utf-8");
-            System.out.println("Client: " + request);
+//            //do something msg
+//            //使用StringDecoder字符串解码器代替
+//            ByteBuf buf = (ByteBuf)msg;
+//            byte[] data = new byte[buf.readableBytes()];
+//            buf.readBytes(data);
+//            String request = new String(data, "utf-8");
+//            System.out.println("Client: " + request);
 
+            String request = (String) msg;
+            System.out.println("Client: " + request);
 
         } finally {
             ReferenceCountUtil.release(msg);

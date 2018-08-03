@@ -1,10 +1,14 @@
 package com.netty.test;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 public class Server {
 
@@ -22,7 +26,16 @@ public class Server {
                 //一定要使用childHandler，去绑定具体的事件处理器
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline().addLast(new Serverhandler());
+                        //设置特殊字符分隔符
+                        ByteBuf byteBuf = Unpooled.copiedBuffer("$_".getBytes());
+                        socketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(1024,byteBuf));
+                        //设置字符创形式解码
+                        socketChannel.pipeline().addLast(new StringDecoder());
+                        //绑定处理类
+
+
+                        ChannelPipeline channelPipeline = socketChannel.pipeline().addLast(new Serverhandler());
+                        System.out.println("channelPipeline = " + channelPipeline);
                     }
                 })
                 //服务器TCP内核模块维护两个队列，称之为AB
