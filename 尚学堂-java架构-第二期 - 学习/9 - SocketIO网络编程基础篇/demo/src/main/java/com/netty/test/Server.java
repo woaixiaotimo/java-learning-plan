@@ -32,8 +32,6 @@ public class Server {
                         //设置字符创形式解码
                         socketChannel.pipeline().addLast(new StringDecoder());
                         //绑定处理类
-
-
                         ChannelPipeline channelPipeline = socketChannel.pipeline().addLast(new Serverhandler());
                         System.out.println("channelPipeline = " + channelPipeline);
                     }
