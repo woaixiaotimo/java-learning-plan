@@ -7,8 +7,7 @@ import java.util.concurrent.FutureTask;
 
 public class ThreadCreate03  extends  Thread{
     public static void main(String[] args) {
-        new ThreadCreate03().join();
-        new ThreadCreate03().join();
+
     }
 
 }
