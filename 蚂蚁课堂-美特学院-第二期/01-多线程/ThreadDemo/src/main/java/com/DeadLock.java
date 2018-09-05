@@ -2,11 +2,10 @@ package com;
 
 /**
  * 死锁
- * */
+ */
 public class DeadLock {
     private static Object A = new Object();
     private static Object B = new Object();
-volatile
 
     public static void main(String[] args) {
         new Thread(() -> {
