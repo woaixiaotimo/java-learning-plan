@@ -16,6 +16,7 @@ public class Test1 {
             lock.lock();
             try {
                 System.out.println("t1进入等待状态");
+                condition.signal();
                 condition.await();
                 System.out.println("t1收到通知");
             } catch (InterruptedException e) {
@@ -25,9 +26,10 @@ public class Test1 {
             }
         });
         Thread t2 = new Thread(() -> {
+
             lock.lock();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 System.out.println("t2发出通知");
                 condition.signalAll();
             } catch (InterruptedException e) {
