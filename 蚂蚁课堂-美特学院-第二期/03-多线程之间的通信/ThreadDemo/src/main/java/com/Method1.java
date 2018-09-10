@@ -1,5 +1,9 @@
 package com;
 
+
+/**
+ * 使用wait()&notify()，完成生产者消费者
+ * */
 public class Method1 {
     private final ThreadToGo threadToGo = new ThreadToGo();
 

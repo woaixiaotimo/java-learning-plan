@@ -4,6 +4,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 使用Lock+Condition，完成生产者消费者
+ * */
 public class Method2 {
     private Lock lock = new ReentrantLock(true);
     private Condition condition = lock.newCondition();
