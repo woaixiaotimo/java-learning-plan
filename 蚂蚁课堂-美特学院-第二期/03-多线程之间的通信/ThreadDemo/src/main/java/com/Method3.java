@@ -43,10 +43,13 @@ public class Method3 {
     }
 
     public static void main(String args[]) throws InterruptedException {
-        Method3 three = new Method3();
-        Helper.instance.run(three.newThreadOne());
-        Helper.instance.run(three.newThreadTwo());
-        Helper.instance.shutdown();
+//        Method3 three = new Method3();
+//        Helper.instance.run(three.newThreadOne());
+//        Helper.instance.run(three.newThreadTwo());
+//        Helper.instance.shutdown();
+
+        int availProcessors = Runtime.getRuntime().availableProcessors();
+        System.out.println("avail processors count: " + availProcessors);
     }
 
 }
