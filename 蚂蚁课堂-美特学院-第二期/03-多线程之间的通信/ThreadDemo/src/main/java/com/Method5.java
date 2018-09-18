@@ -6,7 +6,17 @@ import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
+/**
+ * 使用CyclicBarrier，完成生产者消费者
+ */
 public class Method5 {
+
+    public static void main(String args[]) {
+        MethodFour four = new MethodFour();
+        Helper.instance.run(four.newThreadOne());
+        Helper.instance.run(four.newThreadTwo());
+        Helper.instance.shutdown();
+    }
 }
 
 class MethodFour {
@@ -66,11 +76,6 @@ class MethodFour {
         };
     }
 
-    public static void main(String args[]) {
-        MethodFour four = new MethodFour();
-        Helper.instance.run(four.newThreadOne());
-        Helper.instance.run(four.newThreadTwo());
-        Helper.instance.shutdown();
-    }
+
 }
 
