@@ -7,7 +7,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
  * 服务端
- * Netty5
+ * Netty4
+ * Netty5模型有问题主流使用3/4
  */
 public class NettyServer {
 
@@ -22,10 +23,12 @@ public class NettyServer {
     public static void main(String[] args) throws InterruptedException {
         try {
 
+            //绑定时间处理线程池
             serverBootstrap.group(group);
             //绑定通道类型
             serverBootstrap.channel(NioServerSocketChannel.class);
-            serverBootstrap.childHandler(new NettyServerFilter()); //设置过滤器
+            //设置过滤器
+            serverBootstrap.childHandler(new NettyServerFilter());
             // 服务器绑定端口监听
             ChannelFuture f = serverBootstrap.bind(port).sync();
             System.out.println("服务端启动成功...");
