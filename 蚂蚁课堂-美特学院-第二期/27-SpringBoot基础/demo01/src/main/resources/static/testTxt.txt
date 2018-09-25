@@ -1,0 +1,12 @@
+int	await()
+Waits until all parties have invoked await on this barrier.
+int	await(long timeout, TimeUnit unit)
+Waits until all parties have invoked await on this barrier, or the specified waiting time elapses.
+int	getNumberWaiting()
+Returns the number of parties currently waiting at the barrier.
+int	getParties()
+Returns the number of parties required to trip this barrier.
+boolean	isBroken()
+Queries if this barrier is in a broken state.
+void	reset()
+Resets the barrier to its initial state
