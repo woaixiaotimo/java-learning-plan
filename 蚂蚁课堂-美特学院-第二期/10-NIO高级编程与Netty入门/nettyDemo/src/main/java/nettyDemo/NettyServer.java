@@ -23,7 +23,7 @@ public class NettyServer {
     public static void main(String[] args) throws InterruptedException {
         try {
 
-            //绑定时间处理线程池
+            //绑定事件处理线程池
             serverBootstrap.group(group);
             //绑定通道类型
             serverBootstrap.channel(NioServerSocketChannel.class);
