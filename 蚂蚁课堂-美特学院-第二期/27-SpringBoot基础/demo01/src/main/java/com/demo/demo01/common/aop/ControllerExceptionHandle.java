@@ -16,7 +16,6 @@ public class ControllerExceptionHandle {
     @ExceptionHandler(ArithmeticException.class)
     @ResponseBody
     public String handleException2(Throwable e) {
-        System.out.println("e = " + e);
         return "捕捉数字除以0产生的错误！";
     }
 
@@ -32,8 +31,6 @@ public class ControllerExceptionHandle {
         if (e instanceof ArithmeticException) {
             System.out.println("捕捉到ArithmeticException类型异常");
         }
-
-        System.out.println("e = " + e);
         return "再次捕捉所有异常!";
     }
 
