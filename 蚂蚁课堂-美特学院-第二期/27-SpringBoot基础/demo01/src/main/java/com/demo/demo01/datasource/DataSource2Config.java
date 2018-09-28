@@ -5,6 +5,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration//注册到spring容器中
-@MapperScan(basePackages = "com.demo.demo01.test02", sqlSessionTemplateRef = "test2SqlSessionFactory")
+@MapperScan(basePackages = "com.demo.demo01.test02", sqlSessionFactoryRef = "test2SqlSessionFactory")
 public class DataSource2Config {
 
     /**
@@ -28,11 +29,17 @@ public class DataSource2Config {
      * @QQ:644064779
      */
     @Bean(name = "test2DataSource")//表示生产一个bean交给spring容器
-    @ConfigurationProperties(prefix = "spring.datasource.test2")//
+    @ConfigurationProperties(prefix = "spring.datasource.test1")//
     public DataSource testDataSource() {
-        return DataSourceBuilder.create().build();
+        return primaryDateSourceProperties().initializeDataSourceBuilder().build();
     }
 
+    @Bean("primary2DateSourceProperties")
+    @Qualifier("primary2DateSourceProperties")
+    @ConfigurationProperties(prefix = "spring.datasource.test2")
+    public DataSourceProperties primaryDateSourceProperties() {
+        return new DataSourceProperties();
+    }
 
     /**
      * @methodDesc: 功能描述:(test2 sql会话工厂)

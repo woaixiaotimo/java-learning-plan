@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +15,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
+
 @Configuration//注册到spring容器中
-@MapperScan(basePackages = "com.demo.demo01.test01", sqlSessionTemplateRef = "test1SqlSessionFactory")
+@MapperScan(basePackages = "com.demo.demo01.test01", sqlSessionFactoryRef = "test1SqlSessionFactory")
 public class DataSource1Config {
 
     /**
@@ -31,7 +33,15 @@ public class DataSource1Config {
     @ConfigurationProperties(prefix = "spring.datasource.test1")//
     @Primary
     public DataSource testDataSource() {
-        return DataSourceBuilder.create().build();
+        return primaryDateSourceProperties().initializeDataSourceBuilder().build();
+    }
+
+    @Primary
+    @Bean("primaryDateSourceProperties")
+    @Qualifier("primaryDateSourceProperties")
+    @ConfigurationProperties(prefix = "spring.datasource.test1")
+    public DataSourceProperties primaryDateSourceProperties() {
+        return new DataSourceProperties();
     }
 
 
@@ -50,8 +60,8 @@ public class DataSource1Config {
      * @copyright:上海每特教育科技有限公司
      * @QQ:644064779
      */
-    @Bean(name = "test1SqlSessionFactory")
     @Primary
+    @Bean(name = "test1SqlSessionFactory")
     public SqlSessionFactory testSqlSessionFactory(@Qualifier("test1DataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
@@ -76,14 +86,14 @@ public class DataSource1Config {
      * @copyright:上海每特教育科技有限公司
      * @QQ:644064779
      */
-    @Bean(name = "test1TransactionManager")
     @Primary
+    @Bean(name = "test1TransactionManager")
     public DataSourceTransactionManager testTransactionManager(@Qualifier("test1DataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean(name = "test1SqlSessionTemplate")
     @Primary
+    @Bean(name = "test1SqlSessionTemplate")
     public SqlSessionTemplate testSqlSessionTemplate(
             @Qualifier("test1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
