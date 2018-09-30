@@ -4,16 +4,26 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+
+    <classPathEntry location="C:\Users\啊Q\.m2\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar" />
+
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--mysql数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mybatis" userId="root"
-                        password="">
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+                        <!--connectionURL="jdbc:mysql://localhost:3306/mybatis" userId="root"-->
+                        <!--password="">-->
+        <!--</jdbcConnection>-->
+
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=CEES"
+                        userId="sa"
+                        password="123">
         </jdbcConnection>
+
 
         <!--oracle配置-->
         <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
@@ -49,9 +59,7 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表，要生成哪些表，就写哪些表，要和数据库中对应，不能写错！ -->
-        <table tableName="items"></table>
-        <table tableName="orders"></table>
-        <table tableName="orderdetail"></table>
-        <table tableName="user"></table>
+        <table tableName="CEES_Build"></table>
+
     </context>
 </generatorConfiguration>
