@@ -11,7 +11,7 @@ public class DBConfig1 {
     private String username;
     private String password;
     private int minPoolSize;
-    private int maxPoolSize;
+    private int maxPoolSize=1;
     private int maxLifetime;
     private int borrowConnectionTimeout;
     private int loginTimeout;
