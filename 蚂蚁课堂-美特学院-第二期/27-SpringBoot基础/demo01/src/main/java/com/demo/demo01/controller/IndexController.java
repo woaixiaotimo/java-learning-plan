@@ -1,5 +1,6 @@
 package com.demo.demo01.controller;
 
+import com.demo.demo01.entity.User;
 import com.demo.demo01.test01.service.UserServiceTest01;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,5 +26,11 @@ public class IndexController {
         return "success";
     }
 
+
+    @ResponseBody
+    @RequestMapping("/findByNameTest01")
+    public User findByName(String name) {
+        return userServiceTest01.findByName(name);
+    }
 
 }

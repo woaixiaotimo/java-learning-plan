@@ -1,6 +1,7 @@
 
 package com.demo.demo01.test01.service;
 
+import com.demo.demo01.entity.User;
 import com.demo.demo01.test01.dao.UserMapperTest01;
 import com.demo.demo01.test02.dao.UserMapperTest02;
 import com.demo.demo01.test02.service.UserServiceTest02;
@@ -41,6 +42,10 @@ public class UserServiceTest01 {
         }
         System.out.println("###sendSms###4");
         return "success";
+    }
+
+    public User findByName(String name) {
+        return userMapperTest01.findByName(name);
     }
 
     // class UserThread extends Thread {
