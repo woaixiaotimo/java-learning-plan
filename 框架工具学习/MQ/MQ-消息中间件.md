@@ -24,7 +24,21 @@
 
 # JMS
 
-JMS是java的消息服务，JMS的客户端之间可以通过JMS服务进行异步的消息传输。
+JMS 叫做 Java 消息服务（Java Message Service）,是 Java 平台上有关面向 MOM 的技术规范，旨在通过提供标准的产生、发送、接收和处理消息的 API 简化企业应用的开发，类似于 JDBC 和关系型数据库通信方式的抽象。
+
+![](https://raw.githubusercontent.com/woaixiaotimo/img/master/20170209130542229.png)
+
+
+- Provider：(MessageProvider)生产者/提供商
+- Consumer：(MessageConsumer)消费者
+- PTP：点对点的消息模型
+- Pub/Sub：Publish/Subscribe,即发布/订阅消息模型
+- Queue：目标队列
+- Topic：主题
+- ConnectionFactory：链接工厂，JMS使用它创建链接
+- Connection：JMS客户端到JMS Provider的linajie
+- Destination：消息的目的地
+- Session：会话，一个发送或接收消息的线程
 
 # 什么是消息模型
 
