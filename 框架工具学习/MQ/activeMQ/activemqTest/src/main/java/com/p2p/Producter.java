@@ -66,6 +66,11 @@ public class Producter {
             }
         } catch (JMSException e) {
             e.printStackTrace();
+            try {
+                session.rollback();
+            } catch (JMSException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
