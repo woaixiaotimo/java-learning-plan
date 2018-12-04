@@ -4,69 +4,77 @@ package com.p2p;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 //消费者
 public class Comsumer {
-
-    //ActiveMq 的默认用户名
-    private static final String USERNAME = "admin";
-    //ActiveMq 的默认登录密码
-    private static final String PASSWORD = "admin";
-    //ActiveMQ 的链接地址
-    private static final String BROKEN_URL = "tcp://192.168.10.150:61616";
-
-    ConnectionFactory connectionFactory;
-
-    Connection connection;
-
-    Session session;
-
-    ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<MessageConsumer>();
-    AtomicInteger count = new AtomicInteger();
-
-    public void init(){
-        try {
-            connectionFactory = new ActiveMQConnectionFactory(USERNAME,PASSWORD,BROKEN_URL);
-            connection  = connectionFactory.createConnection();
-            connection.start();
-            session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void getMessage(String disname){
-        try {
-            //p2p模式
-            Queue queue = session.createQueue(disname);
-            MessageConsumer consumer = null;
-
-            if(threadLocal.get()!=null){
-                consumer = threadLocal.get();
-            }else{
-                consumer = session.createConsumer(queue);
-                threadLocal.set(consumer);
-            }
-            while(true){
-//                Thread.sleep(1000);
-                TextMessage msg = (TextMessage) consumer.receive();
-                if(msg!=null) {
-                    msg.acknowledge();
-                    System.out.println(Thread.currentThread().getName()+": Consumer:我是消费者，我正在消费Msg"+msg.getText()+"--->"+count.getAndIncrement());
-                }else {
-                    break;
-                }
-            }
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-    }
+    //连接账号
+    private final String userName = "";
+    //连接密码
+    private final String password = "";
+    //连接地址
+    private final String brokerURL = "tcp://192.168.10.150:61616";
+    //connection的工厂
+    private ConnectionFactory factory;
+    //连接对象
+    private Connection connection;
+    //一个操作会话
+    private Session session;
+    //目的地，其实就是连接到哪个队列，如果是点对点，那么它的实现是Queue，如果是订阅模式，那它的实现是Topic
+    private Destination destination;
+    //消费者，就是接收数据的对象
+    private MessageConsumer messageConsumer;
 
     public static void main(String[] args) {
-        Comsumer comsumer =new Comsumer();
-        comsumer.init();
-        comsumer.getMessage("aaa");
+        Comsumer comsumer = new Comsumer();
+        comsumer.start();
+    }
+
+    public void start() {
+        try {
+            //根据用户名，密码，url创建一个连接工厂
+            factory = new ActiveMQConnectionFactory(userName, password, brokerURL);
+            //从工厂中获取一个连接
+            connection = factory.createConnection();
+            //测试过这个步骤不写也是可以的，但是网上的各个文档都写了
+            connection.start();
+            //创建一个session
+            //第一个参数:是否支持事务，如果为true，则会忽略第二个参数，被jms服务器设置为SESSION_TRANSACTED
+            //第二个参数为false时，paramB的值可为Session.AUTO_ACKNOWLEDGE，Session.CLIENT_ACKNOWLEDGE，DUPS_OK_ACKNOWLEDGE其中一个。
+            //Session.AUTO_ACKNOWLEDGE为自动确认，客户端发送和接收消息不需要做额外的工作。哪怕是接收端发生异常，也会被当作正常发送成功。
+            //Session.CLIENT_ACKNOWLEDGE为客户端确认。客户端接收到消息后，必须调用javax.jms.Message的acknowledge方法。jms服务器才会当作发送成功，并删除消息。
+            //DUPS_OK_ACKNOWLEDGE允许副本的确认模式。一旦接收方应用程序的方法调用从处理消息处返回，会话对象就会确认消息的接收；而且允许重复确认。
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+
+            //===============================p2p模式中创建的是队列===================================
+            //创建一个到达的目的地，其实想一下就知道了，activemq不可能同时只能跑一个队列吧，这里就是连接了一个名为"text-msg"的队列，这个会话将会到这个队列，当然，如果这个队列不存在，将会被创建
+            destination = session.createQueue("text-msg");
+            //=======================================================================================
+
+
+            //根据session，创建一个接收者对象
+            messageConsumer = session.createConsumer(destination);
+
+
+            //实现一个消息的监听器
+            //实现这个监听器后，以后只要有消息，就会通过这个监听器接收到
+            messageConsumer.setMessageListener(new MessageListener() {
+                public void onMessage(Message message) {
+                    try {
+                        //获取到接收的数据
+                        String text = ((TextMessage) message).getText();
+                        System.out.println("接收 = " + text);
+                    } catch (JMSException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+            //关闭接收端，也不会终止程序哦
+            //messageConsumer.close();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,11 +1,13 @@
-package com.p2p;
+package com.pubSub;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-//生产者
-public class Producter {
+/**
+ * 发布
+ */
+public class Publish {
 
     //连接账号
     private final String USER_NAME = "admin";
@@ -25,8 +27,8 @@ public class Producter {
     private MessageProducer producer;
 
     public static void main(String[] args) {
-        Producter producter = new Producter();
-        producter.start();
+        Publish publish = new Publish();
+        publish.start();
     }
 
     public void start() {
@@ -43,13 +45,14 @@ public class Producter {
             //Session.AUTO_ACKNOWLEDGE为自动确认，客户端发送和接收消息不需要做额外的工作。哪怕是接收端发生异常，也会被当作正常发送成功。
             //Session.CLIENT_ACKNOWLEDGE为客户端确认。客户端接收到消息后，必须调用javax.jms.Message的acknowledge方法。jms服务器才会当作发送成功，并删除消息。
             //DUPS_OK_ACKNOWLEDGE允许副本的确认模式。一旦接收方应用程序的方法调用从处理消息处返回，会话对象就会确认消息的接收；而且允许重复确认。
-            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
-
-            //===============================p2p模式中创建的是队列===================================
+            session = connection.createSession(true, Session.SESSION_TRANSACTED);
             //创建一个到达的目的地，其实想一下就知道了，activemq不可能同时只能跑一个队列吧，这里就是连接了一个名为"text-msg"的队列，这个会话将会到这个队列，当然，如果这个队列不存在，将会被创建
-            destination = session.createQueue("text-msg");
-            //=======================================================================================
+
+
+            //=======================================================
+            //点对点与订阅模式唯一不同的地方，就是这一行代码，点对点创建的是Queue，而订阅模式创建的是Topic
+            destination = session.createTopic("topic-text");
+            //=======================================================
 
 
             //从session中，获取一个消息生产者
@@ -61,13 +64,17 @@ public class Producter {
 
             //创建一条消息，当然，消息的类型有很多，如文字，字节，对象等,可以通过session.create..方法来创建出来
 
+            long s = System.currentTimeMillis();
             for (int i = 0; i < 100; i++) {
                 //发送一条消息
-                TextMessage textMsg = session.createTextMessage("发送 = " + "呵呵+" + i + 1);
+                TextMessage textMsg = session.createTextMessage("哈哈+" + (i + 1));
                 producer.send(textMsg);
+                System.out.println(textMsg.getText());
+                session.commit();
             }
-
+            long e = System.currentTimeMillis();
             System.out.println("发送消息成功");
+            System.out.println(e - s);
             //即便生产者的对象关闭了，程序还在运行哦
             producer.close();
 
@@ -76,4 +83,3 @@ public class Producter {
         }
     }
 }
-
