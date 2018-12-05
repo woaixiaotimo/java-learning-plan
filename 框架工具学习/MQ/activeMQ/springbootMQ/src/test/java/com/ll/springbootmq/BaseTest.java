@@ -1,16 +1,10 @@
-package com.example.activemqTest;
+package com.ll.springbootmq;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class DemoApplicationTests {
-
-	@Test
-	public void contextLoads() {
-	}
-
+@SpringBootTest(classes = com.ll.springbootmq.SpringbootmqApplication.class)
+public abstract class BaseTest {
 }

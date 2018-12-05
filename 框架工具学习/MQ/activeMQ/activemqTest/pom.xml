@@ -15,5 +15,11 @@
             <artifactId>activemq-all</artifactId>
             <version>5.15.8</version>
         </dependency>
+
+        <!--  启用JMS 的池化, 就一定要加上这个 jar-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
     </dependencies>
 </project>

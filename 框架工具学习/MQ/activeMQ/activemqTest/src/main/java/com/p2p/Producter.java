@@ -63,8 +63,9 @@ public class Producter {
 
             for (int i = 0; i < 100; i++) {
                 //发送一条消息
-                TextMessage textMsg = session.createTextMessage("发送 = " + "呵呵+" + i + 1);
+                TextMessage textMsg = session.createTextMessage( "呵呵+" + i + 1);
                 producer.send(textMsg);
+                System.out.println("发送 = " + textMsg);
             }
 
             System.out.println("发送消息成功");

@@ -8,9 +8,9 @@ import javax.jms.*;
 //消费者
 public class Comsumer {
     //连接账号
-    private final String userName = "";
+    private final String userName = "admin";
     //连接密码
-    private final String password = "";
+    private final String password = "admin";
     //连接地址
     private final String brokerURL = "tcp://192.168.10.150:61616";
     //connection的工厂

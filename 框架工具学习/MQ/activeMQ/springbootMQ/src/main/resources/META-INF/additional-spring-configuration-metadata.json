@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.activemq.pool.configuration.*",
+      "type": "java.lang.String",
+      "description": "Description for spring.activemq.pool.configuration.*."
+  }
+] }
