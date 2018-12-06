@@ -11,8 +11,6 @@ public class RestOrderMemberController {
     @Autowired
     private RestTemplate restTemplate;
 
-
-
     @RequestMapping("/restGetOrderMember")
     public String getOrderMember() {
         return "order - " + restTemplate.getForObject("http://service-member/getMember", String.class);
