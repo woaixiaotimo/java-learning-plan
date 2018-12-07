@@ -7,7 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/server-zuul/server-zuul.iml" filepath="$PROJECT_DIR$/server-zuul/server-zuul.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-member/service-member.iml" filepath="$PROJECT_DIR$/service-member/service-member.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-order/service-order.iml" filepath="$PROJECT_DIR$/service-order/service-order.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testspringcloud.iml" filepath="$PROJECT_DIR$/testspringcloud.iml" />
     </modules>
   </component>
 </project>
