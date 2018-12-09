@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    #设置服务名
+    name: service-member
+#  redis:
+#    host: 127.0.0.1
+#    password: 123456
+#    port: 6379
+#    pool:
+#      max-idle: 100
+#      min-idle: 1
+#      max-active: 1000
+#      max-wait: -1
+
+
+eureka:
+  client:
+    serviceUrl:
+      #设置服务注册中心的URL，本服务要向该服务注册中心注册自己
+      defaultZone: http://127.0.0.1:1111/eureka
