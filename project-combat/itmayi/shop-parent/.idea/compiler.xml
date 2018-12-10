@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eurekaserver" />
+        <module name="shop-member" />
+        <module name="shop-parent" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="eurekaserver" target="1.8" />
+      <module name="shop-common" target="1.8" />
+      <module name="shop-member" target="1.8" />
+      <module name="shop-parent" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

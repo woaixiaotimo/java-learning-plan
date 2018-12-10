@@ -1,0 +1,47 @@
+server:
+  port: 9200
+logging:
+  level:
+    root: info
+spring:
+  application:
+    #设置服务名
+    name: service-member
+#  redis:
+#    host: 127.0.0.1
+#    password: 123456
+#    port: 6379
+#    pool:
+#      max-idle: 100
+#      min-idle: 1
+#      max-active: 1000
+#      max-wait: -1
+  #数据库连接信息
+  datasource:
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/ll-shop-member?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+        username: root
+        password:
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+
+
+eureka:
+  client:
+    serviceUrl:
+      #设置服务注册中心的URL，本服务要向该服务注册中心注册自己
+      defaultZone: http://127.0.0.1:1111/eureka
