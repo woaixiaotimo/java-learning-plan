@@ -1,9 +1,8 @@
 package cn.xiaowenjie.controllers;
 
 import cn.xiaowenjie.beans.Blog;
-import cn.xiaowenjie.beans.Config;
-import cn.xiaowenjie.common.beans.PageReq;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageRequest;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.common.beans.ResultBean;
 import cn.xiaowenjie.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class BlogController {
 	}
 
 	@GetMapping(value = "/list")
-	public ResultBean<PageResp<Blog>> list(PageReq param) {
+	public ResultBean<PageResponse<Blog>> list(PageRequest param) {
 		return new ResultBean<>(blogService.listPage(param.toPageable(), param.getKeyword()));
 	}
 

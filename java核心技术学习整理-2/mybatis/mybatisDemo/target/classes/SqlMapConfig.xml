@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"></properties>
+
+    
+    <settings>
+        <!--打开延迟加载开关-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--将积极加载改为按需加载-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--开启二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!-- setting -->
+    <!-- 别名定义 -->
+    <!--<typeAliases>-->
+        <!--&lt;!&ndash;-->
+            <!--针对单个别名是的定义-->
+            <!--type：-->
+                <!--类型的路径-->
+            <!--alias:-->
+                <!--类型的别名-->
+
+        <!--&ndash;&gt;-->
+        <!--<typeAlias type="com.po.User" alias="user"></typeAlias>-->
+        <!--&lt;!&ndash;-->
+            <!--批量别名定义-->
+            <!--指定包名，mybatis自动定义别名(就是类名 首字母大小写都可以)-->
+        <!--&ndash;&gt;-->
+        <!--<package name="com.po"></package>-->
+    <!--</typeAliases>-->
+
+    <!-- 和spring整合后 environments配置将废除-->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用jdbc事务管理，事务控制由mybatis-->
+            <transactionManager type="JDBC"/>
+            <!-- 数据库连接池，由mybatis管理-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value=""/>
+            </dataSource>
+
+            <!--<dataSource type="POOLED">-->
+            <!--<property name="driver" value="${jdbc.Driver}"/>-->
+            <!--<property name="url" value="${jdbc.url}"/>-->
+            <!--<property name="username" value="${jdbc.username}"/>-->
+            <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--</dataSource>-->
+        </environment>
+    </environments>
+    <!-- 加载配置文件 -->
+    <!--<mappers>-->
+    <!--<mapper resource="sqlmap/User.xml"></mapper>-->
+    <!--</mappers>-->
+    <!--加载单个的映射文件-->
+    <mappers>
+
+        <!--<mapper resource="mapper/UserMapper.xml"></mapper>-->
+        <!--<mapper url="mapper/UserMapper.xml"></mapper>-->
+        <!--
+            通过mapper 接口加载映射文件
+            遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名保持一致，且在一个目录中
+            上面规范的前提mapper的代理方法
+        -->
+        <!--<mapper class="com.mapper.UserMapper"/>-->
+
+        <!--批量加载-->
+        <package name="com.mapper"></package>
+    </mappers>
+
+
+
+
+</configuration>

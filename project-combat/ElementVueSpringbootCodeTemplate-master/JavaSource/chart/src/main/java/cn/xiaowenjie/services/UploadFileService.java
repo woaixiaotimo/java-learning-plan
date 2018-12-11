@@ -2,7 +2,7 @@ package cn.xiaowenjie.services;
 
 import cn.xiaowenjie.beans.UploadRecord;
 import cn.xiaowenjie.chartbeans.EndData;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.daos.EndDataDao;
 import cn.xiaowenjie.daos.UploadRecordDao;
 import cn.xiaowenjie.tool.ConfigUtil;
@@ -138,12 +138,12 @@ public class UploadFileService {
      * @param keyword
      * @return
      */
-    public PageResp<UploadRecord> listPage(Pageable pageable, String keyword) {
+    public PageResponse<UploadRecord> listPage(Pageable pageable, String keyword) {
         if (StringUtils.isEmpty(keyword)) {
-            return new PageResp<UploadRecord>(uploadRecordDao.findAllByOrderByCreateTimeDesc(pageable));
+            return new PageResponse<UploadRecord>(uploadRecordDao.findAllByOrderByCreateTimeDesc(pageable));
         } else {
             // 也可以用springjpa 的 Specification 来实现查找
-            return new PageResp<UploadRecord>(uploadRecordDao.findAllByKeyword(keyword, pageable));
+            return new PageResponse<UploadRecord>(uploadRecordDao.findAllByKeyword(keyword, pageable));
         }
     }
 }

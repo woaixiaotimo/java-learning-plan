@@ -11,8 +11,6 @@ import cn.xiaowenjie.common.consts.Roles;
 import cn.xiaowenjie.common.utils.UserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,7 +19,7 @@ import org.springframework.util.StringUtils;
 import com.google.common.collect.Lists;
 
 import cn.xiaowenjie.beans.Config;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.daos.ConfigDao;
 
 /**
@@ -117,12 +115,12 @@ public class ConfigService {
      * @param keyword
      * @return
      */
-    public PageResp<Config> listPage(Pageable pageable, String keyword) {
+    public PageResponse<Config> listPage(Pageable pageable, String keyword) {
         if (StringUtils.isEmpty(keyword)) {
-            return new PageResp<Config>(dao.findAll(pageable));
+            return new PageResponse<Config>(dao.findAll(pageable));
         } else {
             // 也可以用springjpa 的 Specification 来实现查找
-            return new PageResp<>(dao.findAllByKeyword(keyword, pageable));
+            return new PageResponse<>(dao.findAllByKeyword(keyword, pageable));
         }
     }
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+       组件扫描：
+           扫描com.mvc.controllers 和 service 下的类
+   -->
+    <context:component-scan base-package="com.mvc.controllers"/>
+    <context:component-scan base-package="com.mvc.service.impl"/>
+
+    <!--
+        视图解析器
+            InternalResourceViewResolver：
+                解析jsp，默认使用jstl标签，classpath下必须要有jstl的包
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--prefix suffix是spring MVC视图解析器的一个属性，-->
+        <!--prefix ： 是指访问页面的前缀，指定页面存放的文件夹-->
+        <!--suffix ： 是指文件的后缀名，常见的后缀名有html,jsp,php,txt,mp3-->
+        <!--<property name="prefix" value="/"></property>-->
+        <!--<property name="suffix" value="/"></property>-->
+    </bean>
+
+    <!-- 启动SpringMvc注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!--自定义参数绑定 - Date-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!-- 转换器 -->
+        <property name="converters">
+            <set>
+                <!-- 日期类型转换 -->
+                <bean class="com.mvc.controllers.converter.CustomDateConverter">
+                    <property name="datePattern" value="yyyy-MM-dd HH:mm:ss"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+
+    <!--添加controller返回Object类型json支持 - 在方法上需要添加@ResponseBody-->
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:message-converters register-defaults="false">-->
+            <!--&lt;!&ndash; 避免IE执行AJAX时,返回JSON出现下载文件 &ndash;&gt;-->
+            <!--<bean id="fastJsonHttpMessageConverter"-->
+                  <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+                <!--<property name="supportedMediaTypes">-->
+                    <!--<list>-->
+                        <!--&lt;!&ndash; 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 &ndash;&gt;-->
+                        <!--<value>text/html;charset=UTF-8</value>-->
+                        <!--<value>application/json;charset=UTF-8</value>-->
+                    <!--</list>-->
+                <!--</property>-->
+
+                <!--<property name="objectMapper">-->
+                    <!--<bean class="com.fasterxml.jackson.databind.ObjectMapper">-->
+                        <!--<property name="dateFormat">-->
+                            <!--<bean class="java.text.SimpleDateFormat">-->
+                                <!--<constructor-arg value="yyyy-MM-dd HH:mm:ss"/>-->
+                            <!--</bean>-->
+                        <!--</property>-->
+                    <!--</bean>-->
+                <!--</property>-->
+
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
+
+</beans>

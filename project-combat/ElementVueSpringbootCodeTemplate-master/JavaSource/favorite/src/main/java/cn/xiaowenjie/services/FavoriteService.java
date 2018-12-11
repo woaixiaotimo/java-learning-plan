@@ -1,19 +1,11 @@
 package cn.xiaowenjie.services;
 
 import cn.xiaowenjie.beans.Favorite;
-import cn.xiaowenjie.beans.Favorite;
-import cn.xiaowenjie.common.beans.PageResp;
-import cn.xiaowenjie.common.consts.Roles;
 import cn.xiaowenjie.common.utils.UserUtil;
 import cn.xiaowenjie.daos.FavoriteDao;
-import cn.xiaowenjie.daos.FavoriteDao;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Collection;
 import java.util.List;

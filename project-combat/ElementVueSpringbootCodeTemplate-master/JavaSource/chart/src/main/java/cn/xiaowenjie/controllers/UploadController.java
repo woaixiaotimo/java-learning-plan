@@ -1,8 +1,8 @@
 package cn.xiaowenjie.controllers;
 
 import cn.xiaowenjie.beans.UploadRecord;
-import cn.xiaowenjie.common.beans.PageReq;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageRequest;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.common.beans.ResultBean;
 import cn.xiaowenjie.services.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class UploadController {
 	}
 
 	@GetMapping(value = "/list")
-	public ResultBean<PageResp<UploadRecord>> list(PageReq param) {
+	public ResultBean<PageResponse<UploadRecord>> list(PageRequest param) {
 		return new ResultBean<>(uploadFileService.listPage(param.toPageable(), param.getKeyword()));
 	}
 

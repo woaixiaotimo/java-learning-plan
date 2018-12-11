@@ -1,7 +1,7 @@
 package cn.xiaowenjie.services;
 
 import cn.xiaowenjie.beans.Blog;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.common.consts.Roles;
 import cn.xiaowenjie.common.utils.UserUtil;
 import cn.xiaowenjie.daos.BlogDao;
@@ -111,12 +111,12 @@ public class BlogService {
      * @param keyword
      * @return
      */
-    public PageResp<Blog> listPage(Pageable pageable, String keyword) {
+    public PageResponse<Blog> listPage(Pageable pageable, String keyword) {
         if (StringUtils.isEmpty(keyword)) {
-            return new PageResp<Blog>(dao.findAll(pageable));
+            return new PageResponse<Blog>(dao.findAll(pageable));
         } else {
             // 也可以用springjpa 的 Specification 来实现查找
-            return new PageResp<>(dao.findAllByKeyword(keyword, pageable));
+            return new PageResponse<>(dao.findAllByKeyword(keyword, pageable));
         }
     }
 

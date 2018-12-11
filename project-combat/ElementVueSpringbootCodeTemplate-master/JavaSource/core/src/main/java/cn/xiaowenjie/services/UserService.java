@@ -1,6 +1,6 @@
 package cn.xiaowenjie.services;
 
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.common.consts.Roles;
 import cn.xiaowenjie.common.daos.UserDao;
 import cn.xiaowenjie.common.rbac.User;
@@ -59,12 +59,12 @@ public class UserService {
 		subject.logout();
 	}
 
-	public PageResp<User> list(Pageable pageable, String keyword) {
+	public PageResponse<User> list(Pageable pageable, String keyword) {
 		if (StringUtils.isEmpty(keyword)) {
-			return new PageResp<User>(userDao.findAll(pageable));
+			return new PageResponse<User>(userDao.findAll(pageable));
 		} else {
 			// 也可以用springjpa 的 Specification 来实现查找
-			return new PageResp<>(userDao.findAllByKeyword(keyword, pageable));
+			return new PageResponse<>(userDao.findAllByKeyword(keyword, pageable));
 		}
 	}
 

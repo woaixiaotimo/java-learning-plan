@@ -16,6 +16,7 @@
     <bytecodeTargetLevel>
       <module name="blog" target="1.8" />
       <module name="chart" target="1.8" />
+      <module name="common" target="1.6" />
       <module name="core" target="1.8" />
       <module name="favorite" target="1.8" />
       <module name="main" target="1.8" />

@@ -7,15 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
-        <module name="shop-member" />
-        <module name="shop-parent" />
+        <module name="shop-core" />
+        <module name="shop-msg" />
+        <module name="shop-service-user" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
+    <bytecodeTargetLevel>
       <module name="eurekaserver" target="1.8" />
-      <module name="shop-common" target="1.8" />
-      <module name="shop-member" target="1.8" />
+      <module name="shop-core" target="1.8" />
+      <module name="shop-msg" target="1.8" />
       <module name="shop-parent" target="1.8" />
+      <module name="shop-service-user" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

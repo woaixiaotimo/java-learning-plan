@@ -1,11 +1,7 @@
 package cn.xiaowenjie.controllers;
 
-import cn.xiaowenjie.beans.Config;
 import cn.xiaowenjie.beans.Favorite;
-import cn.xiaowenjie.common.beans.PageReq;
-import cn.xiaowenjie.common.beans.PageResp;
 import cn.xiaowenjie.common.beans.ResultBean;
-import cn.xiaowenjie.services.ConfigService;
 import cn.xiaowenjie.services.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

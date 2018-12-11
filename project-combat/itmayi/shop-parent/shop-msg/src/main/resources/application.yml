@@ -1,0 +1,36 @@
+server:
+  port: 1200
+  servlet:
+    context-path: /msg
+
+
+spring:
+  application:
+    #设置服务名
+    name: server-msg
+
+eureka:
+  client:
+    serviceUrl:
+      #设置服务注册中心的URL，本服务要向该服务注册中心注册自己
+      defaultZone: http://127.0.0.1:1111/eureka
+
+activemq:
+    broker-url: tcp://localhost:61616
+    in-memory: true
+    pool:
+      enabled: false
+  mail:
+    host: smtp.qq.com
+    username: 1084716575@qq.com
+    password: wode13011588442
+    enable:  true
+    smtp:
+      auth: true
+    starttls:
+      enable: true
+      required: true
+
+msg:
+  subject: 蚂蚁课堂|每特教育提示您，会员注册成功邮件。
+  text:  恭喜您的账户{},注册成功!蚂蚁课堂|每特教育 上海每特教育科技有限公司 www.itmayiedu.com

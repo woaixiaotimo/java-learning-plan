@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--
+        配置modelAndView的handle
+    -->
+    <bean id="ModelAndViewController" name="/queryItems.do" class="com.mvc.controllers.ModelAndViewController"/>
+    <bean id="HttpRequestHandlerController" class="com.mvc.controllers.HttpRequestHandler"/>
+    <!--
+        组件扫描：
+            扫描com.mvc.controllers下的类
+    -->
+    <context:component-scan base-package="com.mvc.controllers"/>
+    <!--
+        处理器映射器：
+            寻找Controller
+            根据url请求去匹配bean的name属性url，从而获取handler/Controller
+
+            BeanNameUrlHandlerMapping:
+                表示将定义的Bean的Name作为请求的url，需要将编写的controller在spring容器中进行配置，
+                且指定bean的name为请求的url，且必须以.action结尾。
+
+    -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+    <!--
+        处理器映射器：
+            SimpleUrlHandlerMapping：
+                该类是BeanNameUrlHandlerMapping的增强版本，它可以将url和处理器bean的id进行统一映射配置。
+    -->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/queryItems1.do">ModelAndViewController</prop>
+                <prop key="/queryItems2.do">HttpRequestHandlerController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--
+        处理器适配器:
+            SimpleControllerHandlerAdapter:
+                非注解适配器
+                要求Handle实现Controller接口，并且适配执行Controller的handleRequest方法。
+    -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <!--
+        处理器适配器:
+            HttpRequestHandlerAdapter:
+                非注解适配器
+
+    -->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+
+    <!-- ====================================注解映射器======================== -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>-->
+
+
+    <!-- ====================================注解适配器======================== -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>-->
+
+    <!--
+        使用<mvc:annotation-driven/>代替上面的使用bean加载注解映射器和适配器配置。
+        <mvc:annotation-driven/>默认加载很多参数绑定方法，如json转换解析器
+    -->
+    <mvc:annotation-driven/>
+
+    <!--
+        视图解析器
+            InternalResourceViewResolver：
+                解析jsp，默认使用jstl标签，classpath下必须要有jstl的包
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+        <!--prefix suffix是spring MVC视图解析器的一个属性，-->
+        <!--prefix ： 是指访问页面的前缀，指定页面存放的文件夹-->
+        <!--suffix ： 是指文件的后缀名，常见的后缀名有html,jsp,php,txt,mp3-->
+        <!--<property name="prefix" value="/"></property>-->
+        <!--<property name="suffix" value="/"></property>-->
+    </bean>
+
+
+</beans>

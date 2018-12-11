@@ -5,16 +5,14 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.xiaowenjie.beans.Config;
-import cn.xiaowenjie.common.beans.PageReq;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageRequest;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.common.beans.ResultBean;
 import cn.xiaowenjie.services.ConfigService;
 
@@ -38,7 +36,7 @@ public class ConfigController {
 	}
 
 	@GetMapping(value = "/list")
-	public ResultBean<PageResp<Config>> list(PageReq param) {
+	public ResultBean<PageResponse<Config>> list(PageRequest param) {
 		return new ResultBean<>(configService.listPage(param.toPageable(), param.getKeyword()));
 	}
 

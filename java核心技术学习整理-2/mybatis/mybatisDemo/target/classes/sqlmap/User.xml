@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离
+注意：使用mapper代理方法开发，namespace有特殊重要的作用
+-->
+<mapper namespace="test">
+    <!-- 在 映射文件中配置很多sql语句 -->
+    <!-- 需求：通过id查询用户表的记录 -->
+    <!--
+        通过 select执行数据库查询
+        id：
+            标识 映射文件中的 sql
+            将sql语句封装到mappedStatement对象中，所以将id称为statement的id
+        parameterType：
+            指定输入 参数的类型，这里指定int型
+        #{}表示一个占位符号
+        #{id}：
+            其中的id表示接收输入 的参数，参数名称就是id，如果输入 参数是简单类型，#{}中的参数名可以任意，可以
+            value或其它名称
+
+        resultType：
+            指定sql输出结果 的所映射的java对象类型，select指定resultType表示将单条记录映射成的java对象。
+     -->
+    <select id="findUserById" parameterType="int" resultType="com.po.User">
+        SELECT * FROM USER WHERE id=#{value}
+    </select>
+    <!--
+        根据用户名模糊查询用户信息，可能返回多条
+        resultType：
+            指定单条记录所映射的java对象类型
+        ${}：
+            表示拼接sql，将接收到的内容不加任何修饰的拼接在sql 中
+        ${value}:
+            接收输入参数的内容，如果传入类型是简单类型，${}中只能使用value
+    -->
+    <select id="findUserByName" parameterType="String" resultType="com.po.User">
+        SELECT * FROM USER WHERE username LIKE '${value}'
+    </select>
+
+    <!--
+        添加用户
+
+        parameterType:
+            指定输入参数类型为pojo(包括用户信息)
+        #{}中指定pojo的属性名，接收到pojo对象的属性值，mybatis通过OGNL获取对象的属性值
+    -->
+    <insert id="insertUser" parameterType="com.po.User">
+        <!--
+            将插入数据的主键返回
+            keyProperty：
+                将查询的主键值设置到parameterType指定的对象的那个属性
+            order：
+                相对于insert来说它的执行顺序，也就是insert之后执行
+            SELECT LAST_INSERT_ID():
+                得到insert进去记录的主键，但只适用于自增主键
+         -->
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <!--
+            使用mysql 的uuid主键
+            执行过程：
+                首先通过uuid()得到主键，将主键设置到user对象的id属性中
+                其次在执行insert时从user对象中取值记录到数据库中
+        -->
+        <!--<selectKey keyProperty="id" order="BEFORE" resultType="String">-->
+        <!--SELECT uuid();-->
+        <!--</selectKey>        -->
+
+        INSERT INTO user(id,username,birthday,sex,address)VALUES (#{id},#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <!--
+        根据ID删除用户
+    -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE  FROM  USER  WHERE id=#{id}
+    </delete>
+    <!--
+        更新用户
+    -->
+    <update id="updateUSer" parameterType="com.po.User">
+        UPDATE USER SET username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} WHERE  id=#{id}
+    </update>
+</mapper>

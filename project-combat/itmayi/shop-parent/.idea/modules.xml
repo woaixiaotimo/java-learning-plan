@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../eurekaserver/eurekaserver.iml" filepath="$PROJECT_DIR$/../eurekaserver/eurekaserver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shop-common/shop-common.iml" filepath="$PROJECT_DIR$/shop-common/shop-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shop-member/shop-member.iml" filepath="$PROJECT_DIR$/shop-member/shop-member.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-core/shop-core.iml" filepath="$PROJECT_DIR$/shop-core/shop-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-msg/shop-msg.iml" filepath="$PROJECT_DIR$/shop-msg/shop-msg.iml" />
       <module fileurl="file://$PROJECT_DIR$/shop-parent.iml" filepath="$PROJECT_DIR$/shop-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-service-user/shop-service-user.iml" filepath="$PROJECT_DIR$/shop-service-user/shop-service-user.iml" />
     </modules>
   </component>
 </project>

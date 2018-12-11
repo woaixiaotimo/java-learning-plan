@@ -3,15 +3,14 @@ package cn.xiaowenjie.controllers;
 import java.util.Arrays;
 import java.util.List;
 
-import cn.xiaowenjie.common.beans.PageReq;
-import cn.xiaowenjie.common.beans.PageResp;
+import cn.xiaowenjie.common.beans.PageRequest;
+import cn.xiaowenjie.common.beans.PageResponse;
 import cn.xiaowenjie.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import cn.xiaowenjie.common.rbac.User;
 import cn.xiaowenjie.common.beans.ResultBean;
-import cn.xiaowenjie.common.consts.Roles;
 
 @RestController
 @CrossOrigin
@@ -37,7 +36,7 @@ public class UserController {
 	}
 
 	@GetMapping("/list")
-	public ResultBean<PageResp<User>> list(PageReq page){
+	public ResultBean<PageResponse<User>> list(PageRequest page){
 		return new ResultBean<>(userService.list(page.toPageable(), page.getKeyword()));
 	}
 

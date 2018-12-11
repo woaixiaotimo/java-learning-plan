@@ -4,9 +4,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/shop-member/pom.xml" />
+        <option value="$PROJECT_DIR$/shop-service-user/pom.xml" />
         <option value="$PROJECT_DIR$/../eurekaserver/pom.xml" />
-        <option value="$PROJECT_DIR$/shop-common/pom.xml" />
+        <option value="$PROJECT_DIR$/shop-msg/pom.xml" />
       </list>
     </option>
   </component>
