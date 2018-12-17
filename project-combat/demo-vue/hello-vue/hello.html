@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>啦啦啦</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{name}}，非常帅！！！</h2>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js" ></script>
+<script>
+    // 创建vue实例
+    var app = new Vue({
+        el:"#app", // el即element，该vue实例要渲染的页面元素
+        data:{ // 渲染页面需要的数据
+            name: "峰哥"
+        }
+    });
+
+</script>
+</html>
