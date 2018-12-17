@@ -18,6 +18,10 @@ zuul:
   retryable: true
   routes:
     item-service: /item/** # 将商品微服务映射到/item/**
+    upload-service:
+      path: /upload/** # 将上传图片微服务映射到/upload/**
+      serviceId: upload-service
+      strip-prefix: false
 
 
 ribbon:

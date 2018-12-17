@@ -30,6 +30,7 @@ public class UploadController {
             // url为空，证明上传失败
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        System.out.println("url = " + url);
         // 返回200，并且携带url路径
         return ResponseEntity.ok(url);
     }

@@ -26,5 +26,10 @@
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId></groupId>
+            <artifactId>spring-boot-test</artifactId>
+        </dependency>
     </dependencies>
 </project>
