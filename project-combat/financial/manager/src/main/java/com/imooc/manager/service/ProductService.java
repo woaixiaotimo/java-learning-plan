@@ -2,6 +2,7 @@ package com.imooc.manager.service;
 
 import com.imooc.entity.ProductEntity;
 import com.imooc.entity.enums.ProductStatus;
+import com.imooc.manager.error.ErrorEnum;
 import com.imooc.manager.repositories.ProductRepository;
 
 import org.slf4j.Logger;
@@ -122,7 +123,7 @@ public class ProductService {
     private void checkProduct(ProductEntity productEntity) {
 
         //非空校验
-        Assert.notNull(productEntity.getId(), "编号不可为空！");
+        Assert.notNull(productEntity.getId(), ErrorEnum.ID_NOT_NULL.getCode());
         Assert.notNull(productEntity.getName(), "名称不可为空！");
         Assert.notNull(productEntity.getThresholdAmount(), "起投金额不可为空！");
         Assert.notNull(productEntity.getStepAmount(), "投资步长！");

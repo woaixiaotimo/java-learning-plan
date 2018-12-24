@@ -1,10 +1,16 @@
 package com.imooc.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
+@ApiModel(description = "产品模型")
 @Entity
 @Table(name = "product", schema = "manager", catalog = "")
 public class ProductEntity {
@@ -18,13 +24,31 @@ public class ProductEntity {
 
     /**
      * @see com.imooc.entity.enums.ProductStatus
-     * */
+     */
+    @ApiModelProperty(value = "状态", dataType = "com.imooc.entity.enums.ProductStatus")
     private String status;
     private String memo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createAt;
     private String createUser;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateAt;
     private String updateUser;
+
+    public ProductEntity() {
+    }
+
+    public ProductEntity(String id, String name, BigDecimal thresholdAmount, BigDecimal stepAmount, Integer lockTerm, BigDecimal rewardRate, String status) {
+        this.id = id;
+        this.name = name;
+        this.thresholdAmount = thresholdAmount;
+        this.stepAmount = stepAmount;
+        this.lockTerm = lockTerm;
+        this.rewardRate = rewardRate;
+        this.status = status;
+    }
 
     @Id
     @Column(name = "id")

@@ -2,6 +2,8 @@ package com.imooc.manager.controller;
 
 import com.imooc.entity.ProductEntity;
 import com.imooc.manager.service.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.util.ToStringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/product")
+@Api(tags = "product",description = "产品相关")
 public class ProductController {
 
 
@@ -33,6 +36,7 @@ public class ProductController {
     private ProductService productService;
 
 
+    @ApiOperation(value = "创建产品",notes = "根据业务规则添加相应的产品")
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ProductEntity addProduct(@RequestBody ProductEntity productEntity) {
         log.info("创建产品,参数{}", productEntity);
