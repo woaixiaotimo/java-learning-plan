@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/product")
-@Api(tags = "product",description = "产品相关")
+@Api(tags = "product",description = "产品相关")//描述当前类
 public class ProductController {
 
 

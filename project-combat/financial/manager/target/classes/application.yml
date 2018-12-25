@@ -14,3 +14,7 @@ spring:
     password:
   jpa:
     show-sql: true #显示sql
+
+swagger:
+  groupName: manager
+  basePackage: com.imooc.manager.controller
