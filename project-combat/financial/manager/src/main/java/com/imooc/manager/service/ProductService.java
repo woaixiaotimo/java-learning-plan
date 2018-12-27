@@ -4,16 +4,12 @@ import com.imooc.entity.ProductEntity;
 import com.imooc.entity.enums.ProductStatus;
 import com.imooc.manager.error.ErrorEnum;
 import com.imooc.manager.repositories.ProductRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
