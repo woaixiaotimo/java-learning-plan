@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -62,4 +64,32 @@ public class ProductService {
         findOne();
     }
 
+
+    public static void main(String[] args) {
+        List<A> asList = Arrays.asList(new A(3), new A(4), new A(1));
+        Collections.sort(asList);
+        for (A a : asList) {
+            System.out.println(a.age + ",");
+        }
+    }
+}
+
+class A implements Comparable {
+    public int age;
+
+    public A(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        A a = (A) o;
+        if (this.age < a.age) {
+            return -1;
+        } else if (this.age == a.age) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 }
